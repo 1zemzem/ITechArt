@@ -12,6 +12,8 @@ import {
   getMinNumber,
   asChain,
 } from "./modules/array-methods.js";
+import { objIsNumber, objIsString, objIsObject, objIsNull, objIsDefined, objIsFunction, objIsNotNumber, objIsBoolean } from "./modules/data-types-functions.js";
+
 
 const clients = [
   { id: 2, name: "Alex", age: 12, scores: 101 },
@@ -21,6 +23,12 @@ const clients = [
 ];
 
 const str = "Hello World";
+
+let undef;
+
+function foo() {};
+
+let nameFieldChecked = true;
 
 const numbers = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, -525, 10];
 
@@ -36,3 +44,20 @@ console.log(getLastElement(numbers));
 console.log(getMaxNumber(numbers));
 console.log(getMinNumber(numbers));
 console.log(asChain(numbers));
+
+console.log(objIsDefined(numbers));
+console.log(objIsDefined(undef));
+console.log(objIsNumber(5));
+console.log(objIsNumber("55"));
+console.log(objIsString("5"));
+console.log(objIsString(55));
+console.log(objIsObject({ 5: 10, 10:100 }));
+console.log(objIsObject("object"));
+console.log(objIsNull());
+console.log(objIsNull(55));
+console.log(objIsFunction(foo));
+console.log(objIsFunction(numbers));
+console.log(objIsNotNumber("fooo"));
+console.log(objIsNotNumber(5));
+console.log(objIsBoolean(nameFieldChecked));
+console.log(objIsBoolean(5));
