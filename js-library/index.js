@@ -12,7 +12,7 @@ import {
   getMinNumber,
   asChain,
 } from "./modules/array-methods.js";
-import { objIsNumber, objIsString, objIsObject, objIsNull, objIsDefined, objIsFunction, objIsNotNumber, objIsBoolean } from "./modules/data-types-functions.js";
+import { objIsNumber, objIsString, objIsObject, objIsNull, isUndefined, objIsFunction, objIsBoolean, objIsNaN } from "./modules/data-types-functions.js";
 
 
 const clients = [
@@ -45,19 +45,19 @@ console.log(getMaxNumber(numbers));
 console.log(getMinNumber(numbers));
 console.log(asChain(numbers));
 
-console.log(objIsDefined(numbers));
-console.log(objIsDefined(undef));
+console.log(isUndefined(undef));
+console.log(isUndefined(numbers));
 console.log(objIsNumber(5));
 console.log(objIsNumber("55"));
 console.log(objIsString("5"));
 console.log(objIsString(55));
 console.log(objIsObject({ 5: 10, 10:100 }));
 console.log(objIsObject("object"));
-console.log(objIsNull());
-console.log(objIsNull(55));
+console.log(objIsNull(null));
+console.log(objIsNull(""));
 console.log(objIsFunction(foo));
 console.log(objIsFunction(numbers));
-console.log(objIsNotNumber("fooo"));
-console.log(objIsNotNumber(5));
+console.log(objIsNaN("foo"));
+console.log(objIsNaN(5));
 console.log(objIsBoolean(nameFieldChecked));
 console.log(objIsBoolean(5));
