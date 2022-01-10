@@ -9,6 +9,8 @@ import {
   getFirstElement,
   getMaxNumber,
   getMinNumber,
+  carry,
+  // myMemo,
   // asChain,
 } from "./modules/array-methods.js";
 import {
@@ -39,9 +41,14 @@ let nameFieldChecked = true;
 
 const numbers = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, -525, 10];
 
-const getAllItems = myForEach(numbers, (item, index) =>
-  console.log(item + ":" + index)
+function multiply(a, b) {
+  return a * b;
+};
+
+const getAllItems = myForEach(numbers, (item, index, array) =>
+  console.log(item + ":" + index + ","  + array)
 );
+
 const dobleNumbers = myMap(numbers, (item) => item * 2);
 console.log(dobleNumbers);
 
@@ -59,7 +66,16 @@ console.log(getFirstElement(numbers));
 console.log(getLastElement(numbers));
 console.log(getMaxNumber(numbers));
 console.log(getMinNumber(numbers));
-// console.log(asChain(numbers));
+
+const multiplyByTwo = carry(multiply, 2);
+console.log(multiplyByTwo(12));
+
+const carriedForEach = carry(myForEach, numbers);
+console.log(
+  carriedForEach((item, index, array) =>
+    console.log(item + ':' + index + ',' + array),
+  ),
+);
 
 console.log(isUndefined(undef));
 console.log(isUndefined(numbers));
@@ -77,3 +93,14 @@ console.log(objIsNaN("foo"));
 console.log(objIsNaN(5));
 console.log(objIsBoolean(nameFieldChecked));
 console.log(objIsBoolean(5));
+
+
+// function fibonacci(n) {
+//   if (n <= 1) {
+//     return 1
+// }
+// return fibonacci(n - 1) + fibonacci(n - 2);
+// };
+ 
+// console.log(myMemo(fibonacci(10)));
+

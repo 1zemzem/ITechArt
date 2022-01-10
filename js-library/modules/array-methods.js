@@ -68,20 +68,35 @@ export const getMinNumber = (array) => {
   return array[0];
 };
 
-// // make a chain with the condition: find all the even numbers double them and then find their sum.
-export const asChain = (array) => {
-  const result = array
-    .filter((item) => {
-      if (item % 2 === 0) {
-        return item;
-      }
-    })
-    .map((item) => {
-      return item * 2;
-    })
-    .reduce((acc, item) => {
-      return acc + item;
-    });
+export const carry = (fn, arg, isFirst = true) => {
+  if (isFirst == true) {
+    return (...args) => fn(arg, ...args);
+  } else {
+    return (...args) => fn(...args, arg);
+  }
+};
 
-  return result;
-}
+// export const asChain = (array) => {
+//   const result = array
+//     .filter((item) => {
+//       if (item % 2 === 0) {
+//         return item;
+//       }
+//     })
+//     .map((item) => {
+//       return item * 2;
+//     })
+//     .reduce((acc, item) => {
+//       return acc + item;
+//     });
+
+//   return result;
+// };
+
+// export const myMemo = (func, ...args) => {
+//   let prevArgs;
+//   let prevValue;
+//   if (args === prevArgs) return prevValue;
+//   prevValue = func(...args);
+//   return prevValue;
+// };
