@@ -10,7 +10,7 @@ import {
   getMaxNumber,
   getMinNumber,
   carry,
-  // myMemo,
+  myMemo,
   // asChain,
 } from "./modules/array-methods.js";
 import {
@@ -66,13 +66,12 @@ console.log(findUser);
 console.log(getIndex(numbers, 7));
 console.log(getFirstElement(numbers));
 console.log(getLastElement(numbers));
-console.log(getMaxNumber(numbers));
-console.log(getMinNumber(numbers));
+console.log(getMaxNumber(numbers2));
+console.log(getMinNumber(numbers2));
 
 const multiplyByTwo = carry(multiply, 2);
 console.log(multiplyByTwo(12));
-
-const carriedForEach = carry(myForEach, numbers);
+const carriedForEach = carry(myForEach, numbers2);
 console.log(
   carriedForEach((item, index, array) =>
     console.log(item + ':' + index + ',' + array),
@@ -97,12 +96,31 @@ console.log(objIsBoolean(nameFieldChecked));
 console.log(objIsBoolean(5));
 
 
-// function fibonacci(n) {
-//   if (n <= 1) {
-//     return 1
-// }
-// return fibonacci(n - 1) + fibonacci(n - 2);
-// };
+function fibonacci(n) {
+  if (n <= 1) {
+    return 1
+}
+return fibonacci(n - 1) + fibonacci(n - 2);
+};
  
-// console.log(myMemo(fibonacci(10)));
+console.log((fibonacci(10)));
 
+const memo = myMemo(fibonacci, 9);
+console.log(memo);
+
+// export const asChain = (array) => {
+//   const result = array
+//     .filter((item) => {
+//       if (item % 2 === 0) {
+//         return item;
+//       }
+//     })
+//     .map((item) => {
+//       return item * 2;
+//     })
+//     .reduce((acc, item) => {
+//       return acc + item;
+//     });
+
+//   return result;
+// };
