@@ -11,7 +11,7 @@ import {
   getMinNumber,
   carry,
   myMemo,
-  // MyChain,
+  MyChain,
 } from "./modules/array-methods.js";
 import {
   objIsNumber,
@@ -39,7 +39,7 @@ function foo() {}
 
 let nameFieldChecked = true;
 
-const numbers = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, -525, 10];
+const numbers = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, 10];
 
 const numbers2 = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, -525, 10, 0];
 
@@ -64,8 +64,8 @@ const findUser = finder(clients, (item) => item.scores >= 100);
 console.log(findUser);
 
 console.log(getIndex(numbers, 7));
-console.log(getFirstElement(numbers));
-console.log(getLastElement(numbers));
+console.log(getFirstElement(numbers2));
+console.log(getLastElement(numbers2));
 console.log(getMaxNumber(numbers2));
 console.log(getMinNumber(numbers2));
 
@@ -107,10 +107,22 @@ console.log(fibonacci(10));
 const memo = myMemo(fibonacci, 9);
 console.log(memo);
 
-const chain = new MyChain();
+const chain = new MyChain(numbers);
 chain
-  .myFilter((numbers, (item) => item >= 5))
-  .myMap((numbers, (item) => item * 2))
-  .myReduce(numbers2, (item, acc) => item + acc, 0);
+  .myFilter((item) => item < 5)
+  .myMap((item) => item * 2)
+  .myReduce((item, acc) => item + acc, 0);
 
-console.log(chain);
+console.log(chain.result);
+
+// class User {
+//   constructor(firstName, lastName) {
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.sayHi = function () {
+//       return `Hi, ${this.firstName} ${this.lastName}`;
+//     };
+//   }
+// }
+// let pupil = new User("Ольга", "Васильева");
+// console.log(pupil.sayHi());

@@ -81,32 +81,36 @@ export const myMemo = (func, ...args) => {
   return prevValue;
 };
 
-// export class MyChain {
-//   constructor() {
-//     this.result = 0;
+//todo
+export class MyChain {
+  constructor(collection) {
+    this.result = collection;
 
-//     this.myFilter = function (collection, callback) {
-//       for (const item of collection) {
-//         if (callback(item)) {
-//           result.push(item);
-//         }
-//       }
-//       return this;
-//     };
+    this.myFilter = (callback) => {
+      const result = this.re;
+      for (let index = 0; index < this.length; index++) {
+        if (callback(this[index], index, this)) {
+          result.push(this[index]);
+        }
+      }
+      return this;
+    };
+    console.log(this.result);
 
-//     this.myMap = function (collection, callback) {
-//       for (const item of collection) {
-//         const newItem = callback(item);
-//         result.push(newItem);
-//       }
-//       return this;
-//     };
+    this.myMap = function (callback) {
+      const resultArray = [];
+      for (let index = 0; index < this.length; index++) {
+        resultArray.push(callback(this[index], index, this));
+      }
+      return this;
+    };
 
-//     this.myReduce = function (collection, callback, init) {
-//       let acc = init;
-//       for (const item of collection) {
-//         acc = callback(acc, item);
-//       }
-//       return acc;
-//     };
-//   }}
+    this.myReduce = function (callback, initialVal) {
+      let accumulator = initialVal;
+      for (let index = 0; index < this.length; index++) {
+        accumulator = callback(accumulator, this[index]);
+      }
+      return this;
+    };
+  }
+}
