@@ -41,18 +41,20 @@ let nameFieldChecked = true;
 
 const numbers = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, -525, 10];
 
+const numbers2 = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, -525, 10, 0];
+
 function multiply(a, b) {
   return a * b;
 };
 
-const getAllItems = myForEach(numbers, (item, index, array) =>
+const getAllItems = myForEach(numbers2, (item, index, array) =>
   console.log(item + ":" + index + ","  + array)
 );
 
-const dobleNumbers = myMap(numbers, (item) => item * 2);
+const dobleNumbers = myMap(numbers2, (item) => item * 2);
 console.log(dobleNumbers);
 
-const sum = myReduce(numbers, (item, acc) => item + acc, 0);
+const sum = myReduce(numbers2, (item, acc) => item + acc, 0);
 console.log(sum);
 
 const filteredClients = myFilter(clients, (user) => user.age >= 18);

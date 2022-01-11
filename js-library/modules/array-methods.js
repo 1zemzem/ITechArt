@@ -50,22 +50,12 @@ export const getLastElement = (array) => array[array.length - 1];
 
 // find the maximum value.
 export const getMaxNumber = (array) => {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] > array[0]) {
-      array[0] = array[i];
-    }
-  }
-  return array[0];
+  return Math.max(...array);
 };
 
 // find the minimum value.
 export const getMinNumber = (array) => {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] < array[0]) {
-      array[0] = array[i];
-    }
-  }
-  return array[0];
+  return Math.min(...array);
 };
 
 export const carry = (fn, arg, isFirst = true) => {
