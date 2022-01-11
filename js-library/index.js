@@ -11,7 +11,7 @@ import {
   getMinNumber,
   carry,
   myMemo,
-  // asChain,
+  // MyChain,
 } from "./modules/array-methods.js";
 import {
   objIsNumber,
@@ -45,16 +45,16 @@ const numbers2 = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, -525, 10, 0];
 
 function multiply(a, b) {
   return a * b;
-};
+}
 
 const getAllItems = myForEach(numbers2, (item, index, array) =>
-  console.log(item + ":" + index + ","  + array)
+  console.log(item + ":" + index + "," + array)
 );
 
 const dobleNumbers = myMap(numbers2, (item) => item * 2);
 console.log(dobleNumbers);
 
-const sum = myReduce(numbers2, (item, acc) => item + acc, 0);
+const sum = myReduce(numbers2, (item, acc) => item + acc);
 console.log(sum);
 
 const filteredClients = myFilter(clients, (user) => user.age >= 18);
@@ -74,8 +74,8 @@ console.log(multiplyByTwo(12));
 const carriedForEach = carry(myForEach, numbers2);
 console.log(
   carriedForEach((item, index, array) =>
-    console.log(item + ':' + index + ',' + array),
-  ),
+    console.log(item + ":" + index + "," + array)
+  )
 );
 
 console.log(isUndefined(undef));
@@ -95,32 +95,22 @@ console.log(objIsNaN(5));
 console.log(objIsBoolean(nameFieldChecked));
 console.log(objIsBoolean(5));
 
-
 function fibonacci(n) {
   if (n <= 1) {
-    return 1
+    return 1;
+  }
+  return fibonacci(n - 1) + fibonacci(n - 2);
 }
-return fibonacci(n - 1) + fibonacci(n - 2);
-};
- 
-console.log((fibonacci(10)));
+
+console.log(fibonacci(10));
 
 const memo = myMemo(fibonacci, 9);
 console.log(memo);
 
-// export const asChain = (array) => {
-//   const result = array
-//     .filter((item) => {
-//       if (item % 2 === 0) {
-//         return item;
-//       }
-//     })
-//     .map((item) => {
-//       return item * 2;
-//     })
-//     .reduce((acc, item) => {
-//       return acc + item;
-//     });
+const chain = new MyChain();
+chain
+  .myFilter((numbers, (item) => item >= 5))
+  .myMap((numbers, (item) => item * 2))
+  .myReduce(numbers2, (item, acc) => item + acc, 0);
 
-//   return result;
-// };
+console.log(chain);

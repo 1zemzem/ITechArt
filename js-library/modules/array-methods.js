@@ -1,44 +1,44 @@
 // loop through each element of the array
-export const myForEach = (array, callback) => {
-  for (let counter = 0; counter < array.length; counter++) {
-    callback(array[counter], counter, array);
+export const myForEach = (collection, callback) => {
+  for (let index = 0; index < collection.length; index++) {
+    callback(collection[index], index, collection);
   }
 };
 
 // map function implementation
-export const myMap = (collection, callback) => {
-  const result = [];
-  for (const item of collection) {
-    const newItem = callback(item);
-    result.push(newItem);
+export const myMap = function (collection, callback) {
+  const resultArray = [];
+  for (let index = 0; index < collection.length; index++) {
+    resultArray.push(callback(collection[index], index, collection));
   }
-  return result;
+  return resultArray;
 };
 
 // function with the accumulator parameter
-export const myReduce = (collection, callback, init) => {
-  let acc = init;
-  for (const item of collection) {
-    acc = callback(acc, item);
+export const myReduce = (collection, callback, initialVal) => {
+  let accumulator = initialVal === undefined ? 0 : initialVal;
+  for (let index = 0; index < collection.length; index++) {
+    accumulator = callback(accumulator, collection[index]);
   }
-  return acc;
+  return accumulator;
 };
 
 // find an element in the array
 export const finder = (collection, callback) => {
-  for (const item of collection) {
-    if (callback(item)) {
-      return item;
+  for (let index = 0; index < collection.length; index++) {
+    if (index === -1) {
+      return undefined;
     }
+    return collection[index];
   }
 };
 
 // filter the array
 export const myFilter = (collection, callback) => {
   const result = [];
-  for (const item of collection) {
-    if (callback(item)) {
-      result.push(item);
+  for (let index = 0; index < collection.length; index++) {
+    if (callback(collection[index], index, collection)) {
+      result.push(collection[index]);
     }
   }
   return result;
@@ -72,23 +72,6 @@ export const carry = (fn, arg, isFirst = true) => {
   }
 };
 
-// export const asChain = (array) => {
-//   const result = array
-//     .filter((item) => {
-//       if (item % 2 === 0) {
-//         return item;
-//       }
-//     })
-//     .map((item) => {
-//       return item * 2;
-//     })
-//     .reduce((acc, item) => {
-//       return acc + item;
-//     });
-
-//   return result;
-// };
-
 // function that implements the concept of memorization
 export const myMemo = (func, ...args) => {
   let prevArgs;
@@ -97,3 +80,33 @@ export const myMemo = (func, ...args) => {
   prevValue = func(...args);
   return prevValue;
 };
+
+// export class MyChain {
+//   constructor() {
+//     this.result = 0;
+
+//     this.myFilter = function (collection, callback) {
+//       for (const item of collection) {
+//         if (callback(item)) {
+//           result.push(item);
+//         }
+//       }
+//       return this;
+//     };
+
+//     this.myMap = function (collection, callback) {
+//       for (const item of collection) {
+//         const newItem = callback(item);
+//         result.push(newItem);
+//       }
+//       return this;
+//     };
+
+//     this.myReduce = function (collection, callback, init) {
+//       let acc = init;
+//       for (const item of collection) {
+//         acc = callback(acc, item);
+//       }
+//       return acc;
+//     };
+//   }}
