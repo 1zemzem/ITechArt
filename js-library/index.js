@@ -107,54 +107,58 @@ console.log(fibonacci(10));
 const memo = myMemo(fibonacci, 9);
 console.log(memo);
 
-const chain = new MyChain(numbers);
-chain
-  .myFilter((item) => item < 5)
-  // .myMap((item) => item * 2)
-  // .myReduce((item, acc) => item + acc, 0);
+const chain = new MyChain(numbers2);
 
-console.log(chain.result);
+console.log(
+  chain
+    .myFilter((item) => item < 5)
+    .myMap((item) => item * 2)
+    .myReduce((item, acc) => item + acc, 0)
+);
 
 class User {
   constructor(firstName, lastName) {
     this.firstName = firstName;
     this.lastName = lastName;
   }
-    sayHi() {
-      return `Hi, ${this.firstName} ${this.lastName}`;
-    };
+  sayHi() {
+    return `Hi, ${this.firstName} ${this.lastName}`;
   }
+}
 class Pupil extends User {
   constructor(firstName, lastName, isAnswerForLastQuestionKnown) {
-    super(firstName, lastName);    
+    super(firstName, lastName);
     this.marks = [];
     this.isAnswerForLastQuestionKnown = isAnswerForLastQuestionKnown;
     this.answerQuestion = function () {
+      const mark = 5;
       if (isAnswerForLastQuestionKnown == "yes") {
+        this.marks.push(mark);
       }
+      return this.marks;
     };
   }
-  
 }
 
 class Teacher extends User {
-  constructor(firstName, lastName, askQuestion, lastSetMark, ...args) {
-    super(firstName, lastName);    
+  constructor(firstName, lastName, askQuestion) {
+    super(firstName, lastName);
     this.askQuestion = askQuestion;
-    this.lastSetMark = lastSetMark;
+    this.lastSetMark;
     this.setMarks = function () {
+      const lastMark = 10;
       if (askQuestion == "yes") {
-        if (Pupil.isAnswerForLastQuestionKnown) {
-          this.lastSetMark = lastSetMark;
-        }
+        this.lastSetMark = lastMark;
       }
+      return this.lastSetMark;
     };
   }
 }
 
-let pupil = new Pupil("Ольга", "Васильева");
-let teacher = new Teacher("Елена", "Жукова");
+let pupil = new Pupil("Max", "Moser", "yes");
+let teacher = new Teacher("Alex", "Rasca", "yes");
 
 console.log(pupil.sayHi());
 console.log(teacher.sayHi());
-
+console.log(pupil.answerQuestion());
+console.log(teacher.setMarks());

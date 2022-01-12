@@ -86,29 +86,33 @@ export class MyChain {
   constructor(collection) {
     this.result = collection;
   }
+
   myFilter(callback) {
-    const newArr = this.result;
-    for (let index = 0; index < this.length; index++) {
-      if (callback(this[index], index, this)) {
-        newArr.push(this[index]);
+    const resultArray = [];
+    for (let index = 0; index < this.result.length; index++) {
+      if (callback(this.result[index], index, this)) {
+        resultArray.push(this.result[index]);
       }
-      return newArr;
     }
+    this.result = resultArray;
+    return this;
   }
 
   myMap(callback) {
-    const resultArray = this.result;
-    for (let index = 0; index < this.length; index++) {
-      resultArray.push(callback(this[index], index, this));
+    const resultArray = [];
+    for (let index = 0; index < this.result.length; index++) {
+      resultArray.push(callback(this.result[index], index, this));
     }
-    return this.result;
+    this.result = resultArray;
+    return this;
   }
 
-  myReduce(callback) {
-    let accumulator = this.result;
-    for (let index = 0; index < this.length; index++) {
-      accumulator = callback(accumulator, this[index]);
+  myReduce(callback, initialVal) {
+    let accumulator = initialVal === undefined ? 0 : initialVal;
+    for (let index = 0; index < this.result.length; index++) {
+      accumulator = callback(accumulator, this.result[index]);
     }
-    return this.result;
+    this.result = accumulator;
+    return this;
   }
 }
