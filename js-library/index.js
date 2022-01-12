@@ -115,14 +115,23 @@ chain
 
 console.log(chain.result);
 
-// class User {
-//   constructor(firstName, lastName) {
-//     this.firstName = firstName;
-//     this.lastName = lastName;
-//     this.sayHi = function () {
-//       return `Hi, ${this.firstName} ${this.lastName}`;
-//     };
-//   }
-// }
-// let pupil = new User("Ольга", "Васильева");
-// console.log(pupil.sayHi());
+class User {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.sayHi = function () {
+      return `Hi, ${this.firstName} ${this.lastName}`;
+    };
+    this.marks = [];
+    this.answerQuestion = function() {
+
+    };
+    this.isAnswerForLastQuestionKnown = function() {
+
+    };
+    this.lastSetMark = []
+
+  }
+}
+let pupil = new User("Ольга", "Васильева");
+console.log(pupil.sayHi());

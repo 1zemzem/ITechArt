@@ -87,14 +87,14 @@ export class MyChain {
     this.result = collection;
 
     this.myFilter = (callback) => {
-      const result = this.re;
+      const result = this.result;
       for (let index = 0; index < this.length; index++) {
         if (callback(this[index], index, this)) {
           result.push(this[index]);
         }
       }
       return this;
-    };
+    }
     console.log(this.result);
 
     this.myMap = function (callback) {
@@ -103,7 +103,7 @@ export class MyChain {
         resultArray.push(callback(this[index], index, this));
       }
       return this;
-    };
+    }
 
     this.myReduce = function (callback, initialVal) {
       let accumulator = initialVal;
@@ -111,6 +111,6 @@ export class MyChain {
         accumulator = callback(accumulator, this[index]);
       }
       return this;
-    };
+    }
   }
 }
