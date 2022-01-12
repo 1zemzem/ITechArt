@@ -85,32 +85,30 @@ export const myMemo = (func, ...args) => {
 export class MyChain {
   constructor(collection) {
     this.result = collection;
-
-    this.myFilter = (callback) => {
-      const result = this.result;
-      for (let index = 0; index < this.length; index++) {
-        if (callback(this[index], index, this)) {
-          result.push(this[index]);
-        }
+  }
+  myFilter(callback) {
+    const newArr = this.result;
+    for (let index = 0; index < this.length; index++) {
+      if (callback(this[index], index, this)) {
+        newArr.push(this[index]);
       }
-      return this;
+      return newArr;
     }
-    console.log(this.result);
+  }
 
-    this.myMap = function (callback) {
-      const resultArray = [];
-      for (let index = 0; index < this.length; index++) {
-        resultArray.push(callback(this[index], index, this));
-      }
-      return this;
+  myMap(callback) {
+    const resultArray = this.result;
+    for (let index = 0; index < this.length; index++) {
+      resultArray.push(callback(this[index], index, this));
     }
+    return this.result;
+  }
 
-    this.myReduce = function (callback, initialVal) {
-      let accumulator = initialVal;
-      for (let index = 0; index < this.length; index++) {
-        accumulator = callback(accumulator, this[index]);
-      }
-      return this;
+  myReduce(callback) {
+    let accumulator = this.result;
+    for (let index = 0; index < this.length; index++) {
+      accumulator = callback(accumulator, this[index]);
     }
+    return this.result;
   }
 }

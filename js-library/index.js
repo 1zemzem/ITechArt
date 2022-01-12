@@ -110,8 +110,8 @@ console.log(memo);
 const chain = new MyChain(numbers);
 chain
   .myFilter((item) => item < 5)
-  .myMap((item) => item * 2)
-  .myReduce((item, acc) => item + acc, 0);
+  // .myMap((item) => item * 2)
+  // .myReduce((item, acc) => item + acc, 0);
 
 console.log(chain.result);
 
@@ -119,19 +119,42 @@ class User {
   constructor(firstName, lastName) {
     this.firstName = firstName;
     this.lastName = lastName;
-    this.sayHi = function () {
+  }
+    sayHi() {
       return `Hi, ${this.firstName} ${this.lastName}`;
     };
+  }
+class Pupil extends User {
+  constructor(firstName, lastName, isAnswerForLastQuestionKnown) {
+    super(firstName, lastName);    
     this.marks = [];
-    this.answerQuestion = function() {
-
+    this.isAnswerForLastQuestionKnown = isAnswerForLastQuestionKnown;
+    this.answerQuestion = function () {
+      if (isAnswerForLastQuestionKnown == "yes") {
+      }
     };
-    this.isAnswerForLastQuestionKnown = function() {
+  }
+  
+}
 
+class Teacher extends User {
+  constructor(firstName, lastName, askQuestion, lastSetMark, ...args) {
+    super(firstName, lastName);    
+    this.askQuestion = askQuestion;
+    this.lastSetMark = lastSetMark;
+    this.setMarks = function () {
+      if (askQuestion == "yes") {
+        if (Pupil.isAnswerForLastQuestionKnown) {
+          this.lastSetMark = lastSetMark;
+        }
+      }
     };
-    this.lastSetMark = []
-
   }
 }
-let pupil = new User("Ольга", "Васильева");
+
+let pupil = new Pupil("Ольга", "Васильева");
+let teacher = new Teacher("Елена", "Жукова");
+
 console.log(pupil.sayHi());
+console.log(teacher.sayHi());
+
