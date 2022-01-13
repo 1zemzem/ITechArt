@@ -9,7 +9,9 @@ import {
   getFirstElement,
   getMaxNumber,
   getMinNumber,
-  // asChain,
+  carry,
+  myMemo,
+  MyChain,
 } from "./modules/array-methods.js";
 import {
   objIsNumber,
@@ -37,15 +39,22 @@ function foo() {}
 
 let nameFieldChecked = true;
 
-const numbers = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, -525, 10];
+const numbers = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, 10];
 
-const getAllItems = myForEach(numbers, (item, index) =>
-  console.log(item + ":" + index)
+const numbers2 = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 525, -525, 10, 0];
+
+function multiply(a, b) {
+  return a * b;
+}
+
+const getAllItems = myForEach(numbers2, (item, index, array) =>
+  console.log(item + ":" + index + "," + array)
 );
-const dobleNumbers = myMap(numbers, (item) => item * 2);
+
+const dobleNumbers = myMap(numbers2, (item) => item * 2);
 console.log(dobleNumbers);
 
-const sum = myReduce(numbers, (item, acc) => item + acc, 0);
+const sum = myReduce(numbers2, (item, acc) => item + acc);
 console.log(sum);
 
 const filteredClients = myFilter(clients, (user) => user.age >= 18);
@@ -55,11 +64,19 @@ const findUser = finder(clients, (item) => item.scores >= 100);
 console.log(findUser);
 
 console.log(getIndex(numbers, 7));
-console.log(getFirstElement(numbers));
-console.log(getLastElement(numbers));
-console.log(getMaxNumber(numbers));
-console.log(getMinNumber(numbers));
-// console.log(asChain(numbers));
+console.log(getFirstElement(numbers2));
+console.log(getLastElement(numbers2));
+console.log(getMaxNumber(numbers2));
+console.log(getMinNumber(numbers2));
+
+const multiplyByTwo = carry(multiply, 2);
+console.log(multiplyByTwo(12));
+const carriedForEach = carry(myForEach, numbers2);
+console.log(
+  carriedForEach((item, index, array) =>
+    console.log(item + ":" + index + "," + array)
+  )
+);
 
 console.log(isUndefined(undef));
 console.log(isUndefined(numbers));
@@ -77,3 +94,71 @@ console.log(objIsNaN("foo"));
 console.log(objIsNaN(5));
 console.log(objIsBoolean(nameFieldChecked));
 console.log(objIsBoolean(5));
+
+function fibonacci(n) {
+  if (n <= 1) {
+    return 1;
+  }
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(10));
+
+const memo = myMemo(fibonacci, 9);
+console.log(memo);
+
+const chain = new MyChain(numbers2);
+
+console.log(
+  chain
+    .myFilter((item) => item < 5)
+    .myMap((item) => item * 2)
+    .myReduce((item, acc) => item + acc, 0)
+);
+
+class User {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  sayHi() {
+    return `Hi, ${this.firstName} ${this.lastName}`;
+  }
+}
+class Pupil extends User {
+  constructor(firstName, lastName, isAnswerForLastQuestionKnown) {
+    super(firstName, lastName);
+    this.marks = [];
+    this.isAnswerForLastQuestionKnown = isAnswerForLastQuestionKnown;
+    this.answerQuestion = function () {
+      const mark = 5;
+      if (isAnswerForLastQuestionKnown == "yes") {
+        this.marks.push(mark);
+      }
+      return this.marks;
+    };
+  }
+}
+
+class Teacher extends User {
+  constructor(firstName, lastName, askQuestion) {
+    super(firstName, lastName);
+    this.askQuestion = askQuestion;
+    this.lastSetMark;
+    this.setMarks = function () {
+      const lastMark = 10;
+      if (askQuestion == "yes") {
+        this.lastSetMark = lastMark;
+      }
+      return this.lastSetMark;
+    };
+  }
+}
+
+let pupil = new Pupil("Max", "Moser", "yes");
+let teacher = new Teacher("Alex", "Rasca", "yes");
+
+console.log(pupil.sayHi());
+console.log(teacher.sayHi());
+console.log(pupil.answerQuestion());
+console.log(teacher.setMarks());

@@ -1,39 +1,44 @@
-export const myForEach = (array, callback) => {
-  for (let counter = 0; counter < array.length; counter++) {
-    callback(array[counter], counter, array);
+// loop through each element of the array
+export const myForEach = (collection, callback) => {
+  for (let index = 0; index < collection.length; index++) {
+    callback(collection[index], index, collection);
   }
 };
 
-export const myMap = (collection, callback) => {
-  const result = [];
-  for (const item of collection) {
-    const newItem = callback(item);
-    result.push(newItem);
+// map function implementation
+export const myMap = function (collection, callback) {
+  const resultArray = [];
+  for (let index = 0; index < collection.length; index++) {
+    resultArray.push(callback(collection[index], index, collection));
   }
-  return result;
+  return resultArray;
 };
 
-export const myReduce = (collection, callback, init) => {
-  let acc = init;
-  for (const item of collection) {
-    acc = callback(acc, item);
+// function with the accumulator parameter
+export const myReduce = (collection, callback, initialVal) => {
+  let accumulator = initialVal === undefined ? 0 : initialVal;
+  for (let index = 0; index < collection.length; index++) {
+    accumulator = callback(accumulator, collection[index]);
   }
-  return acc;
+  return accumulator;
 };
 
+// find an element in the array
 export const finder = (collection, callback) => {
-  for (const item of collection) {
-    if (callback(item)) {
-      return item;
+  for (let index = 0; index < collection.length; index++) {
+    if (index === -1) {
+      return undefined;
     }
+    return collection[index];
   }
 };
 
+// filter the array
 export const myFilter = (collection, callback) => {
   const result = [];
-  for (const item of collection) {
-    if (callback(item)) {
-      result.push(item);
+  for (let index = 0; index < collection.length; index++) {
+    if (callback(collection[index], index, collection)) {
+      result.push(collection[index]);
     }
   }
   return result;
@@ -50,38 +55,64 @@ export const getLastElement = (array) => array[array.length - 1];
 
 // find the maximum value.
 export const getMaxNumber = (array) => {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] > array[0]) {
-      array[0] = array[i];
-    }
-  }
-  return array[0];
+  return Math.max(...array);
 };
 
 // find the minimum value.
 export const getMinNumber = (array) => {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] < array[0]) {
-      array[0] = array[i];
-    }
-  }
-  return array[0];
+  return Math.min(...array);
 };
 
-// // make a chain with the condition: find all the even numbers double them and then find their sum.
-export const asChain = (array) => {
-  const result = array
-    .filter((item) => {
-      if (item % 2 === 0) {
-        return item;
-      }
-    })
-    .map((item) => {
-      return item * 2;
-    })
-    .reduce((acc, item) => {
-      return acc + item;
-    });
+// function that implements the concept of currying
+export const carry = (fn, arg, isFirst = true) => {
+  if (isFirst == true) {
+    return (...args) => fn(arg, ...args);
+  } else {
+    return (...args) => fn(...args, arg);
+  }
+};
 
-  return result;
+// function that implements the concept of memorization
+export const myMemo = (func, ...args) => {
+  let prevArgs;
+  let prevValue;
+  if (args === prevArgs) return prevValue;
+  prevValue = func(...args);
+  return prevValue;
+};
+
+//todo
+export class MyChain {
+  constructor(collection) {
+    this.result = collection;
+  }
+
+  myFilter(callback) {
+    const resultArray = [];
+    for (let index = 0; index < this.result.length; index++) {
+      if (callback(this.result[index], index, this)) {
+        resultArray.push(this.result[index]);
+      }
+    }
+    this.result = resultArray;
+    return this;
+  }
+
+  myMap(callback) {
+    const resultArray = [];
+    for (let index = 0; index < this.result.length; index++) {
+      resultArray.push(callback(this.result[index], index, this));
+    }
+    this.result = resultArray;
+    return this;
+  }
+
+  myReduce(callback, initialVal) {
+    let accumulator = initialVal === undefined ? 0 : initialVal;
+    for (let index = 0; index < this.result.length; index++) {
+      accumulator = callback(accumulator, this.result[index]);
+    }
+    this.result = accumulator;
+    return this;
+  }
 }
