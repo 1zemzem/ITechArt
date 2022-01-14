@@ -116,45 +116,39 @@ class User {
     return `Hi, ${this.firstName} ${this.lastName}`;
   }
 }
-
 class Pupil extends User {
   constructor(firstName, lastName, isAnswerForLastQuestionKnown) {
     super(firstName, lastName);
     this.marks = [];
     this.isAnswerForLastQuestionKnown = isAnswerForLastQuestionKnown;
   }
-    answerQuestion() {
-      
-      if (this.isAnswerForLastQuestionKnown == "yes") {
-        return true;
-      } else {
-        return false;
-      }
-    };
+  answerQuestion() {
+    if (this.isAnswerForLastQuestionKnown == "yes") {
+      return true;
+    } else {
+      return false;
+    }
   }
-
-
+}
 class Teacher extends User {
   constructor(firstName, lastName) {
     super(firstName, lastName);
     this.lastSetMark;
   }
-    askQuestion(pupil) {
-      if (pupil.answerQuestion() == true) {
-        this.setMarks = function (pupil) {
-          this.lastSetMark = 10;
-          pupil.marks.push(this.lastSetMark);
-          return pupil.marks
-        };
-      } else {
-        this.lastSetMark = 0;
+  askQuestion(pupil) {
+    if (pupil.answerQuestion() == true) {
+      this.setMarks = function (pupil) {
+        this.lastSetMark = 10;
         pupil.marks.push(this.lastSetMark);
-        return pupil.marks
-      }
-      // return true;
-    };
+        return pupil.marks;
+      };
+    } else {
+      this.lastSetMark = 0;
+      pupil.marks.push(this.lastSetMark);
+      return pupil.marks;
+    }
   }
-
+}
 
 let pupil = new Pupil("Max", "Moser", "yes");
 let teacher = new Teacher("Alex", "Rasca");
@@ -183,18 +177,16 @@ console.log(teacher.setMarks(pupil));
 
 // const Cchaining = function (collection) {
 //   function (callback) {
-    
+
 //   };
 // };
-
 
 // function chain(value) {
 //     return {
 //       callback: (func, ...args) => chain(func(value, ...args)),
 //       value: () => value,
 //     };
-//   };  
-  
-    
+//   };
+
 //   console.log(chain([1,2,3])
 //   .map((item) => item * 2))
