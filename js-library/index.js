@@ -122,21 +122,24 @@ class Pupil extends User {
     super(firstName, lastName);
     this.marks = [];
     this.isAnswerForLastQuestionKnown = isAnswerForLastQuestionKnown;
-    this.answerQuestion = function () {
-      if (isAnswerForLastQuestionKnown == "yes") {
+  }
+    answerQuestion() {
+      
+      if (this.isAnswerForLastQuestionKnown == "yes") {
         return true;
       } else {
         return false;
       }
     };
   }
-}
+
 
 class Teacher extends User {
   constructor(firstName, lastName) {
     super(firstName, lastName);
     this.lastSetMark;
-    this.askQuestion = function (pupil) {
+  }
+    askQuestion(pupil) {
       if (pupil.answerQuestion() == true) {
         this.setMarks = function (pupil) {
           this.lastSetMark = 10;
@@ -148,12 +151,12 @@ class Teacher extends User {
         pupil.marks.push(this.lastSetMark);
         return pupil.marks
       }
-      
+      // return true;
     };
   }
-}
 
-let pupil = new Pupil("Max", "Moser", "no");
+
+let pupil = new Pupil("Max", "Moser", "yes");
 let teacher = new Teacher("Alex", "Rasca");
 
 console.log(pupil.sayHi());
