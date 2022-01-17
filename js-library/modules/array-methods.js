@@ -81,38 +81,55 @@ export const myMemo = (func, ...args) => {
   return prevValue;
 };
 
-//todo
-export class MyChain {
-  constructor(collection) {
-    this.result = collection;
-  }
+// export class MyChain {
+//   constructor(collection) {
+//     this.result = collection;
+//   }
 
-  myFilter(callback) {
-    const resultArray = [];
-    for (let index = 0; index < this.result.length; index++) {
-      if (callback(this.result[index], index, this)) {
-        resultArray.push(this.result[index]);
-      }
-    }
-    this.result = resultArray;
-    return this;
-  }
+//   myFilter(callback) {
+//     const resultArray = [];
+//     for (let index = 0; index < this.result.length; index++) {
+//       if (callback(this.result[index], index, this)) {
+//         resultArray.push(this.result[index]);
+//       }
+//     }
+//     this.result = resultArray;
+//     return this;
+//   }
 
-  myMap(callback) {
-    const resultArray = [];
-    for (let index = 0; index < this.result.length; index++) {
-      resultArray.push(callback(this.result[index], index, this));
-    }
-    this.result = resultArray;
-    return this;
-  }
+//   myMap(callback) {
+//     const resultArray = [];
+//     for (let index = 0; index < this.result.length; index++) {
+//       resultArray.push(callback(this.result[index], index, this));
+//     }
+//     this.result = resultArray;
+//     return this;
+//   }
 
-  myReduce(callback, initialVal) {
-    let accumulator = initialVal === undefined ? 0 : initialVal;
-    for (let index = 0; index < this.result.length; index++) {
-      accumulator = callback(accumulator, this.result[index]);
-    }
-    this.result = accumulator;
-    return this;
-  }
-}
+//   myReduce(callback, initialVal) {
+//     let accumulator = initialVal === undefined ? 0 : initialVal;
+//     for (let index = 0; index < this.result.length; index++) {
+//       accumulator = callback(accumulator, this.result[index]);
+//     }
+//     this.result = accumulator;
+//     return this;
+//   }
+// };
+
+// chaining
+
+// export const myFinalChain = function(collection) {
+//   let total = collection;
+
+//   function f1() {
+//     return this;
+//   }
+//   function f2() {
+//     return this;
+//   }
+//   function f3() {
+//     return this;
+//   }
+
+//   return { f1, f2, f3}
+// }

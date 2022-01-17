@@ -11,7 +11,7 @@ import {
   getMinNumber,
   carry,
   myMemo,
-  MyChain,
+  // MyChain,
 } from "./modules/array-methods.js";
 import {
   objIsNumber,
@@ -107,15 +107,6 @@ console.log(fibonacci(10));
 const memo = myMemo(fibonacci, 9);
 console.log(memo);
 
-const chain = new MyChain(numbers2);
-
-console.log(
-  chain
-    .myFilter((item) => item < 5)
-    .myMap((item) => item * 2)
-    .myReduce((item, acc) => item + acc, 0)
-);
-
 class User {
   constructor(firstName, lastName) {
     this.firstName = firstName;
@@ -130,35 +121,122 @@ class Pupil extends User {
     super(firstName, lastName);
     this.marks = [];
     this.isAnswerForLastQuestionKnown = isAnswerForLastQuestionKnown;
-    this.answerQuestion = function () {
-      const mark = 5;
-      if (isAnswerForLastQuestionKnown == "yes") {
-        this.marks.push(mark);
-      }
-      return this.marks;
-    };
+  }
+  answerQuestion() {
+    if (this.isAnswerForLastQuestionKnown == "yes") {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
-
 class Teacher extends User {
-  constructor(firstName, lastName, askQuestion) {
+  constructor(firstName, lastName) {
     super(firstName, lastName);
-    this.askQuestion = askQuestion;
     this.lastSetMark;
-    this.setMarks = function () {
-      const lastMark = 10;
-      if (askQuestion == "yes") {
-        this.lastSetMark = lastMark;
-      }
-      return this.lastSetMark;
-    };
+  }
+  askQuestion(pupil) {
+    if (pupil.answerQuestion() == true) {
+      this.setMarks = function (pupil) {
+        this.lastSetMark = 10;
+        pupil.marks.push(this.lastSetMark);
+        return pupil.marks;
+      };
+    } else {
+      this.lastSetMark = 0;
+      pupil.marks.push(this.lastSetMark);
+      return pupil.marks;
+    }
   }
 }
 
 let pupil = new Pupil("Max", "Moser", "yes");
-let teacher = new Teacher("Alex", "Rasca", "yes");
+let teacher = new Teacher("Alex", "Rasca");
 
 console.log(pupil.sayHi());
 console.log(teacher.sayHi());
 console.log(pupil.answerQuestion());
-console.log(teacher.setMarks());
+console.log(teacher.askQuestion(pupil));
+console.log(teacher.setMarks(pupil));
+
+function User2(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.sayHi = function() {    
+      return `Hi, ${this.firstName} ${this.lastName}`;
+    }
+};
+
+function Pupil2(firstName, lastName, isAnswerForLastQuestionKnown) {
+  User2.call(this, firstName, lastName);
+  this.marks = [];
+  this.isAnswerForLastQuestionKnown = isAnswerForLastQuestionKnown;
+  this.answerQuestion = function() {
+    if (this.isAnswerForLastQuestionKnown == "yes") {
+      return true;
+    } else {
+      return false;
+    }
+  }  
+}
+
+function Teacher2(firstName, lastName) {
+  User2.call(this, firstName, lastName);
+  this.lastSetMark;
+  this.askQuestion = function(pupil2) {
+    if (pupil2.answerQuestion() == true) {
+      this.setMarks = function (pupil2) {
+        this.lastSetMark = 10;
+        pupil2.marks.push(this.lastSetMark);
+        return pupil2.marks;
+      };
+    } else {
+      this.lastSetMark = 0;
+      pupil2.marks.push(this.lastSetMark);
+      return pupil2.marks;
+    }
+  }
+}
+
+let pupil2 = new Pupil2("Max", "Moser", "yes");
+let teacher2 = new Teacher2("Alex", "Rasca");
+
+console.log(pupil2.sayHi());
+console.log(teacher2.sayHi());
+console.log(pupil2.answerQuestion());
+console.log(teacher2.askQuestion(pupil2));
+console.log(teacher2.setMarks(pupil2));
+
+
+
+// const chain = new MyChain(numbers2);
+
+// console.log(
+//   chain
+//     .myFilter((item) => item < 5)
+//     .myMap((item) => item * 2)
+//     .myReduce((item, acc) => item + acc, 0)
+// );
+
+// function promisify(f) {
+//   return function (...args) {
+//     args.push(callback); // добавляем колбэк в конец аргументов f
+//     f.call(this, ...args); // вызываем оригинальную функцию
+//   };
+// };
+
+// const Cchaining = function (collection) {
+//   function (callback) {
+
+//   };
+// };
+
+// function chain(value) {
+//     return {
+//       callback: (func, ...args) => chain(func(value, ...args)),
+//       value: () => value,
+//     };
+//   };
+
+//   console.log(chain([1,2,3])
+//   .map((item) => item * 2))
