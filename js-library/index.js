@@ -11,7 +11,7 @@ import {
   getMinNumber,
   carry,
   myMemo,
-  // MyChain,
+  PowerArray,
 } from "./modules/array-methods.js";
 import {
   objIsNumber,
@@ -162,28 +162,28 @@ console.log(teacher.setMarks(pupil));
 function User2(firstName, lastName) {
   this.firstName = firstName;
   this.lastName = lastName;
-  this.sayHi = function() {    
-      return `Hi, ${this.firstName} ${this.lastName}`;
-    }
-};
+  this.sayHi = function () {
+    return `Hi, ${this.firstName} ${this.lastName}`;
+  };
+}
 
 function Pupil2(firstName, lastName, isAnswerForLastQuestionKnown) {
   User2.call(this, firstName, lastName);
   this.marks = [];
   this.isAnswerForLastQuestionKnown = isAnswerForLastQuestionKnown;
-  this.answerQuestion = function() {
+  this.answerQuestion = function () {
     if (this.isAnswerForLastQuestionKnown == "yes") {
       return true;
     } else {
       return false;
     }
-  }  
+  };
 }
 
 function Teacher2(firstName, lastName) {
   User2.call(this, firstName, lastName);
   this.lastSetMark;
-  this.askQuestion = function(pupil2) {
+  this.askQuestion = function (pupil2) {
     if (pupil2.answerQuestion() == true) {
       this.setMarks = function (pupil2) {
         this.lastSetMark = 10;
@@ -195,7 +195,7 @@ function Teacher2(firstName, lastName) {
       pupil2.marks.push(this.lastSetMark);
       return pupil2.marks;
     }
-  }
+  };
 }
 
 let pupil2 = new Pupil2("Max", "Moser", "yes");
@@ -207,36 +207,8 @@ console.log(pupil2.answerQuestion());
 console.log(teacher2.askQuestion(pupil2));
 console.log(teacher2.setMarks(pupil2));
 
+// todo
+// const myArr = new PowerArray(numbers2);
 
-
-// const chain = new MyChain(numbers2);
-
-// console.log(
-//   chain
-//     .myFilter((item) => item < 5)
-//     .myMap((item) => item * 2)
-//     .myReduce((item, acc) => item + acc, 0)
-// );
-
-// function promisify(f) {
-//   return function (...args) {
-//     args.push(callback); // добавляем колбэк в конец аргументов f
-//     f.call(this, ...args); // вызываем оригинальную функцию
-//   };
-// };
-
-// const Cchaining = function (collection) {
-//   function (callback) {
-
-//   };
-// };
-
-// function chain(value) {
-//     return {
-//       callback: (func, ...args) => chain(func(value, ...args)),
-//       value: () => value,
-//     };
-//   };
-
-//   console.log(chain([1,2,3])
-//   .map((item) => item * 2))
+// const asChain = myArr => {
+  
