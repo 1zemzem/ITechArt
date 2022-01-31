@@ -1,0 +1,129 @@
+.container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      width: 100%;
+      max-width: 500px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+
+      &__main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+      }
+}
+
+.weather-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &__title {
+            font-size: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+      }
+
+      &__description {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 17px;
+            opacity: 0.8;
+            margin-bottom: 12px;
+      }
+
+      &__icon {
+            margin: auto;
+            margin-bottom: 12px;
+      }
+
+      &__temp {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+      }
+
+      &__temp-value {
+            display: flex;
+            align-items: flex-start;
+            font-size: 40px;
+            margin-bottom: 6px;
+      }
+}
+
+.container-data {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 24px;
+      column-gap: 20px;
+
+      &__info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #dedede;
+            
+            &-label {
+                  padding-right: 20px;
+            }
+      }
+
+      // // .container-data__info-row-label
+
+      // &__info-row-label {
+           
+      // }
+
+      // // .container-data__info-row-value
+
+      // &__info-row-value {
+           
+      // }
+}
+
+.selection-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 46px;
+      width: 100%;
+      max-width: 500px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+
+      &__row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 20px;
+
+            &-button {
+                  cursor: pointer;
+                  border: 0;
+                  font: inherit;
+                  font-weight: 500;
+                  outline: none;
+                  padding: 11px;
+                  border-radius: 6px;
+                  background: #e0e1e2;
+                  transition: opacity .2s ease-out;
+            }
+
+      }
+
+
+}
