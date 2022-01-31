@@ -60,8 +60,7 @@ export default function CurrentWeather({
             <div className="container-data__info-row-label">Feels like</div>
             <div className="container-data__info-row-value">
               {main.feels_like} °C
-            </div>
-            
+            </div>            
           </div>
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Visibility</div>
