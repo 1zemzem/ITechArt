@@ -42,8 +42,7 @@ export default function Main() {
           setError(error);
         }
       )
-      .then(setShow(true));
-      
+      .then(setShow(true));      
 
     // if (error) {
     //   return <div>Ошибка: {error.message}</div>;
