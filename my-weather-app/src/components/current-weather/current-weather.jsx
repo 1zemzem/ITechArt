@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./current-weather.scss";
 import ForecastWeather from "../forecast-wether/forecast-weather";
 
@@ -15,6 +15,8 @@ export default function CurrentWeather({
   showForecast,
   ...props
 }) {
+
+ const [number, setNumber] = useState("");
  
   console.log(list)
   return (
@@ -77,19 +79,19 @@ export default function CurrentWeather({
       
       <div className="selection-container">
         <div className="selection-container__row">
-          <button className="selection-container__row-button">
+          <button className="selection-container__row-button" onClick={() => { getDataForecast(); setNumber(3);}}>
             Get 3-days forecast
           </button>
-          <button className="selection-container__row-button">
+          <button className="selection-container__row-button" onClick={() => { getDataForecast(); setNumber(5);}}>
             Get 5-days forecast
           </button>
-          <button className="selection-container__row-button" onClick={getDataForecast} >
+          <button className="selection-container__row-button"  onClick={() => { getDataForecast(); setNumber(7);}}>
             Get 7-days forecast
           </button>
         </div>
       </div>
       { showForecast && (
-        <ForecastWeather list={list} />
+        <ForecastWeather list={list} number={number}/>
       )}
       
     </>

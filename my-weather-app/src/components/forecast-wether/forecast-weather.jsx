@@ -2,8 +2,10 @@ import react from "react";
 import "./forecast-weather.scss";
 
 export default function ForecastWeather(props) {
-  const forecastList = props.list;
-
+  const forecasts = props.list;
+  const n = props.number;
+  const forecastList = (forecasts.slice(0, n));
+console.log(n)
   const listItems = forecastList.map((item) => (
     <div className="f-container-forecast__item" key={item.dt}>
       <div className="f-container-forecast__item-date">{item.dt}</div>

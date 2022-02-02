@@ -47,6 +47,7 @@ export default function Main() {
         setIsLoaded(false);
         setData(data);
         setShow(true);
+        setShowForecast(false);
         setError();
       })
       .catch((error) => {
