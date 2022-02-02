@@ -24,6 +24,9 @@ export default function Main() {
     visibility: "",
     icon: "",
   });
+  const [forecast, setForecast] = useState ({
+    
+  })
   const [city, setCity] = useState("");
   const [show, setShow] = useState(false);
 
@@ -52,6 +55,30 @@ export default function Main() {
         setShow(false);
       });
   };
+
+  const getDataForecast = async () => {
+    await fetch(getForecastApiUrl(city, API_KEY))
+      .then((res) => {
+        if (!res.ok) {
+          return Promise.reject(new Error(res.statusText));
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        setIsLoaded(false);
+        setForecast(data);
+        setShow(true);
+        setError();
+      })
+      .catch((error) => {
+        setIsLoaded(true);
+        setError(error);
+        setShow(false);
+      });
+    console.log(forecast)
+  };
+
 
   return (
     <>
@@ -88,6 +115,7 @@ export default function Main() {
           wind={data.wind}
           weather={data.weather[0].description}
           icon={data.weather[0].icon}
+          getDataForecast={getDataForecast}
         />
       )}
     </>

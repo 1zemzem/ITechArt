@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+.container-forecast {
+    display: flex;
+    overflow: auto;
+    padding-bottom: 8px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex-shrink: 0;
+        padding: 12px 8px;
+        border: 1px solid #d6d6d6;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+    &__item-date {
+        margin-bottom: 4px;
+    }
+
+    &__item-icon {
+        display: flex;
+        text-align: center;
+        width: 50px;
+    }
+
+    &__item-description {
+        font-size: 12px;
+    }
+
+    &__item-temp {
+        font-size: 14px;
+    }
+}

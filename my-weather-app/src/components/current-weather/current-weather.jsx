@@ -1,5 +1,6 @@
 import React from "react";
 import "./current-weather.scss";
+import ForecastWeather from "../forecast-wether/forecast-weather";
 
 export default function CurrentWeather({
   name,
@@ -9,10 +10,10 @@ export default function CurrentWeather({
   wind,
   visibility,
   icon,
+  getDataForecast,
   ...props
 }) {
-  console.log(icon);
-
+  
   return (
     <>
       <div className="container">
@@ -79,11 +80,12 @@ export default function CurrentWeather({
           <button className="selection-container__row-button">
             Get 5-days forecast
           </button>
-          <button className="selection-container__row-button">
+          <button className="selection-container__row-button" onClick={getDataForecast}>
             Get 7-days forecast
           </button>
         </div>
       </div>
+      <ForecastWeather />
     </>
   );
 }
