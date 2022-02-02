@@ -11,9 +11,12 @@ export default function CurrentWeather({
   visibility,
   icon,
   getDataForecast,
+  city,
+  list, 
   ...props
 }) {
-  
+ 
+  console.log(list)
   return (
     <>
       <div className="container">
@@ -85,7 +88,7 @@ export default function CurrentWeather({
           </button>
         </div>
       </div>
-      <ForecastWeather />
+      <ForecastWeather list={list} />
     </>
   );
 }

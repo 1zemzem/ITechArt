@@ -8,8 +8,7 @@ const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 const API_KEY = "58b6f7c78582bffab3936dac99c31b25";
 const getWeatherApiUrl = (city, apiKey) =>
   `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-const getForecastApiUrl = () =>
-  // eslint-disable-next-line no-undef
+const getForecastApiUrl = (city, apiKey) =>
   `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&units=metric&cnt=7&appid=${apiKey}`;
 
 export default function Main() {
@@ -24,9 +23,9 @@ export default function Main() {
     visibility: "",
     icon: "",
   });
-  const [forecast, setForecast] = useState ({
-    
-  })
+  const [forecast, setForecast] = useState({
+    list: [],
+  });
   const [city, setCity] = useState("");
   const [show, setShow] = useState(false);
 
@@ -76,9 +75,8 @@ export default function Main() {
         setError(error);
         setShow(false);
       });
-    console.log(forecast)
   };
-
+  console.log(forecast.list);
 
   return (
     <>
@@ -116,6 +114,7 @@ export default function Main() {
           weather={data.weather[0].description}
           icon={data.weather[0].icon}
           getDataForecast={getDataForecast}
+          list={forecast.list}          
         />
       )}
     </>
