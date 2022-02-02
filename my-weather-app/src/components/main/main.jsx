@@ -28,6 +28,7 @@ export default function Main() {
   });
   const [city, setCity] = useState("");
   const [show, setShow] = useState(false);
+  const [showForecast, setShowForecast] = useState(false)
 
   const updateValue = async (e) => {
     setCity(e.target.value);
@@ -67,13 +68,13 @@ export default function Main() {
       .then((data) => {
         setIsLoaded(false);
         setForecast(data);
-        setShow(true);
+        setShowForecast(true);
         setError();
       })
       .catch((error) => {
         setIsLoaded(true);
         setError(error);
-        setShow(false);
+        setShowForecast(false);
       });
   };
   console.log(forecast.list);
@@ -114,7 +115,8 @@ export default function Main() {
           weather={data.weather[0].description}
           icon={data.weather[0].icon}
           getDataForecast={getDataForecast}
-          list={forecast.list}          
+          list={forecast.list}      
+          showForecast={showForecast}              
         />
       )}
     </>

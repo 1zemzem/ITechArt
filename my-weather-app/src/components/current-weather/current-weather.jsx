@@ -10,9 +10,9 @@ export default function CurrentWeather({
   wind,
   visibility,
   icon,
-  getDataForecast,
-  city,
-  list, 
+  getDataForecast,  
+  list,   
+  showForecast,
   ...props
 }) {
  
@@ -83,12 +83,15 @@ export default function CurrentWeather({
           <button className="selection-container__row-button">
             Get 5-days forecast
           </button>
-          <button className="selection-container__row-button" onClick={getDataForecast}>
+          <button className="selection-container__row-button" onClick={getDataForecast} >
             Get 7-days forecast
           </button>
         </div>
       </div>
-      <ForecastWeather list={list} />
+      { showForecast && (
+        <ForecastWeather list={list} />
+      )}
+      
     </>
   );
 }

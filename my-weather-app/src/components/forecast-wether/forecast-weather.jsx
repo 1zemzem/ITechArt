@@ -1,29 +1,28 @@
 import react from "react";
 import "./forecast-weather.scss";
 
-export default function ForecastWeather(list) {
-    console.log(list)
+export default function ForecastWeather(props) {
+  const forecastList = props.list;
 
-  return (    
-    <div className="container">
-      <div className="container-forecast">
-      <div className="container-forecast__item">
-              <div className="container-forecast__item-date">day</div>
-              <div className="container-forecast__item-description">description</div>
-              <img
-                className="container-forecast__item-icon"
-                src={`http://openweathermap.org/img/w/.png`}
-                alt="icon"
-              />
-              <div className="container-forecast__item-temp">temp °C / temp °C</div>
-            </div>
+  const listItems = forecastList.map((item) => (
+    <div className="f-container-forecast__item" key={item.dt}>
+      <div className="f-container-forecast__item-date">{item.dt}</div>
+      <div className="f-container-forecast__item-description">
+        {item.weather[0].description}
+      </div>
+      <img
+        className="f-container-forecast__item-icon"
+        src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`}
+        alt="icon"
+      />
+      <div className="f-container-forecast__item-temp">
+        {item.temp.day} °C / {item.temp.night} °C
       </div>
     </div>
+  ));
+  return (
+    <div className="f-container">
+      <div className="f-container-forecast">{listItems}</div>
+    </div>
   );
-  } 
- 
-  
-
-
-       
-  
+}
