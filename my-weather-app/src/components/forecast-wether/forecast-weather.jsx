@@ -1,14 +1,22 @@
 import react from "react";
 import "./forecast-weather.scss";
 
-export default function ForecastWeather(props) {
-  const forecasts = props.list;
-  const n = props.number;
-  const forecastList = (forecasts.slice(0, n));
-console.log(n)
+function getCurrentDate(itemDate) {
+        
+  const date = new Date(itemDate * 1e3);
+  const day = date.getDate();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const year = date.getFullYear();
+  return `
+  ${day}.${month}.${year}
+  `;
+}
+
+export default function ForecastWeather({ list, number, ...props }) {
+  const forecastList = list.slice(0, number);
   const listItems = forecastList.map((item) => (
     <div className="f-container-forecast__item" key={item.dt}>
-      <div className="f-container-forecast__item-date">{item.dt}</div>
+      <div className="f-container-forecast__item-date">{getCurrentDate(item.dt)}</div>
       <div className="f-container-forecast__item-description">
         {item.weather[0].description}
       </div>

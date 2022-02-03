@@ -78,8 +78,7 @@ export default function Main() {
         setShowForecast(false);
       });
   };
-  console.log(forecast.list);
-
+  
   return (
     <>
       <div className="card">
