@@ -1,7 +1,7 @@
 .f-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: baseline;
     padding: 24px;
     width: 100%;
     max-width: 500px;
@@ -10,52 +10,63 @@
     overflow: auto;
     margin-bottom: 40px;
 
-    &-forecast {
+    .f-container-forecast {
         display: flex;
         padding-bottom: 8px;
 
         &:after {
             content: '';
-            width: 24px;
+            width: 20px;
             height: 10px;
             flex-shrink: 0;
         }
 
+        &:before {
+            content: '';
+            width: 20px;
+            height: 10px;
+            flex-shrink: 0;
+        }
 
-        &__item {
+        .f-container-forecast__item {
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
+            min-width: 128px;
             padding: 12px 8px;
             border: 1px solid #d6d6d6;
             border-radius: 4px;
             margin-right: 10px;
         }
 
-        &__item-date {
+        .f-container-forecast__item-date {
             display: flex;
             justify-content: center;
             margin-bottom: 4px;
         }
 
-        &__item-description {
+        .f-container-forecast__item-description {
             display: flex;
             justify-content: center;
             font-size: 12px;
         }
 
-        &__item-icon {
+        .f-container-forecast__item-icon {
             display: flex;
             align-self: center;
             width: 50px;
         }
 
-        &__item-row {
+        .f-container-forecast__item-row {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between;            
+            align-items: center;            
+        }
+        .f-container-forecast__item-row:not(:last-child) {
+            margin-bottom: 6px;
         }
 
-        &__item-temp {
+        .f-container-forecast__item-temp {
             font-size: 14px;
         }
     }

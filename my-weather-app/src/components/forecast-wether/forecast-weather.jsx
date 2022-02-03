@@ -31,10 +31,11 @@ export default function ForecastWeather({ list, number, ...props }) {
         <span>day</span>
         <span>night</span>
       </div>
+      <div className="f-container-forecast__item-row">
       <div className="f-container-forecast__item-temp">
-        {Math.round(item.temp.day)} °C / {Math.round(item.temp.night)} °C
+        {Math.round(item.temp.day)} °C</div> 
+        <div>{Math.round(item.temp.night)} °C</div>
       </div>
-      
     </div>
   ));
   return (

@@ -12,7 +12,7 @@
     align-items: center;
     margin-bottom: 40px;
 
-    &__main {
+    .container__main {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -24,7 +24,7 @@
     flex-direction: column;
     justify-content: center;
 
-    &__title {
+    .weather-card__title {
         font-size: 25px;
         display: flex;
         flex-direction: column;
@@ -33,7 +33,7 @@
         margin-bottom: 12px;
     }
 
-    &__description {
+    .weather-card__description {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -42,18 +42,18 @@
         margin-bottom: 12px;
     }
 
-    &__icon {
+    .weather-card__icon {
         margin: auto;
         margin-bottom: 12px;
     }
 
-    &__temp {
+    .weather-card__temp {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    &__temp-value {
+    .weather-card__temp-value {
         display: flex;
         align-items: flex-start;
         font-size: 40px;
@@ -68,13 +68,13 @@
     margin-top: 24px;
     column-gap: 20px;
 
-    &__info-row {
+    .container-data__info-row {
         display: flex;
         justify-content: space-between;
         padding: 10px;
         border-bottom: 1px solid #dedede;
 
-        &-label {
+        .container-data__info-row-label {
             padding-right: 20px;
         }
     }
@@ -94,12 +94,12 @@
     align-items: center;
     margin-bottom: 40px;
 
-    &__row {
+    .selection-container__row {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         column-gap: 20px;
 
-        &-button {
+        .selection-container__row-button {
             cursor: pointer;
             border: 0;
             font: inherit;
