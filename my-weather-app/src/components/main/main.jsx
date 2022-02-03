@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import CurrentWeather from "../current-weather";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner/spinner";
+import { getDataResult, getForecastResult } from "../../services/api-sevice";
 import "./main.scss";
 
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
-const API_KEY = "58b6f7c78582bffab3936dac99c31b25";
-const getWeatherApiUrl = (city, apiKey) =>
-  `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-const getForecastApiUrl = (city, apiKey) =>
-  `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&units=metric&cnt=7&appid=${apiKey}`;
 
 export default function Main() {
   const [error, setError] = useState();
@@ -28,22 +24,16 @@ export default function Main() {
   });
   const [city, setCity] = useState("");
   const [show, setShow] = useState(false);
-  const [showForecast, setShowForecast] = useState(false)
+  const [showForecast, setShowForecast] = useState(false);
 
   const updateValue = async (e) => {
     setCity(e.target.value);
   };
 
   const getData = async () => {
-    await fetch(getWeatherApiUrl(city, API_KEY))
-      .then((res) => {
-        if (!res.ok) {
-          return Promise.reject(new Error(res.statusText));
-        } else {
-          return res.json();
-        }
-      })
+    await getDataResult(city)
       .then((data) => {
+        console.log(data);
         setIsLoaded(false);
         setData(data);
         setShow(true);
@@ -58,14 +48,7 @@ export default function Main() {
   };
 
   const getDataForecast = async () => {
-    await fetch(getForecastApiUrl(city, API_KEY))
-      .then((res) => {
-        if (!res.ok) {
-          return Promise.reject(new Error(res.statusText));
-        } else {
-          return res.json();
-        }
-      })
+    await getForecastResult(city)
       .then((data) => {
         setIsLoaded(false);
         setForecast(data);
@@ -115,8 +98,8 @@ export default function Main() {
           weather={data.weather[0].description}
           icon={data.weather[0].icon}
           getDataForecast={getDataForecast}
-          list={forecast.list}      
-          showForecast={showForecast}              
+          list={forecast.list}
+          showForecast={showForecast}
         />
       )}
     </>
