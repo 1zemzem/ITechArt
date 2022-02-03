@@ -20,14 +20,21 @@ export default function ForecastWeather({ list, number, ...props }) {
       <div className="f-container-forecast__item-description">
         {item.weather[0].description}
       </div>
+      <div className="f-container-forecast__item-icon">
       <img
-        className="f-container-forecast__item-icon"
+        // className="f-container-forecast__item-icon"
         src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`}
         alt="icon"
       />
-      <div className="f-container-forecast__item-temp">
-        {item.temp.day} °C / {item.temp.night} °C
       </div>
+      <div className="f-container-forecast__item-row">
+        <span>day</span>
+        <span>night</span>
+      </div>
+      <div className="f-container-forecast__item-temp">
+        {Math.round(item.temp.day)} °C / {Math.round(item.temp.night)} °C
+      </div>
+      
     </div>
   ));
   return (
