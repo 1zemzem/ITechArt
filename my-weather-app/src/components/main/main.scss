@@ -7,7 +7,7 @@
     max-width: 500px;
     padding: 40px 0;
 
-    &__title {
+    .card__title {
         color: #ffffff;
         font-size: 44px;
         font-weight: 500;
@@ -15,7 +15,7 @@
         margin-bottom: 18px;
     }
 
-    &__subtitle {
+    .card__subtitle {
         color: #ffffff;
         font-size: 28px;
         font-weight: 500;
@@ -23,7 +23,7 @@
         margin-bottom: 28px;
     }
 
-    &__search-container {
+    .card__search-container {
         display: flex;
         flex-direction: column;
         padding: 24px;
@@ -35,12 +35,12 @@
         align-items: center;
     }
 
-    &__search-container-items {
+    .card__search-container-items {
         display: flex;
         align-items: center;
     }
 
-    &__search-container-item-input {
+    .card__search-container-item-input {
         padding: 10px 24px;
         margin-right: 36px;
         border: 1px solid rgba(34, 36, 38, .15);
@@ -49,7 +49,7 @@
         font: inherit;
     }
 
-    &__search-container-item-button {
+    .card__search-container-item-button {
         cursor: pointer;
         border: 0;
         font: inherit;
