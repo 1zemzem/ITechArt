@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./current-weather.scss";
 import ForecastWeather from "../forecast-wether/forecast-weather";
 
-export default function CurrentWeather({
+const CurrentWeather = ({
   name,
   weather,
   main,
@@ -14,7 +14,7 @@ export default function CurrentWeather({
   list,   
   showForecast,
   ...props
-}) {
+}) => {
 
  const [number, setNumber] = useState("");
  
@@ -97,3 +97,5 @@ export default function CurrentWeather({
     </>
   );
 }
+
+export default CurrentWeather;

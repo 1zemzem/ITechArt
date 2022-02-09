@@ -7,7 +7,7 @@ import "./main.scss";
 
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
-export default function Main() {
+const Main = () => {
   const [error, setError] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState({
@@ -105,3 +105,5 @@ export default function Main() {
     </>
   );
 }
+
+export default Main;

@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import "./forecast-weather.scss";
 
 function getCurrentDate(itemDate) {
@@ -12,7 +12,7 @@ function getCurrentDate(itemDate) {
   `;
 }
 
-export default function ForecastWeather({ list, number, ...props }) {
+const ForecastWeather = ({ list, number, ...props }) => {
   const forecastList = list.slice(0, number);
   const listItems = forecastList.map((item) => (
     <div className="f-container-forecast__item" key={item.dt}>
@@ -44,3 +44,5 @@ export default function ForecastWeather({ list, number, ...props }) {
     </div>
   );
 }
+
+export default ForecastWeather;
