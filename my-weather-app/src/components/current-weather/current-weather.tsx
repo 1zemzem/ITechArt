@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./current-weather.scss";
-import ForecastWeather from "../forecast-wether/forecast-weather";
+import ForecastWeather from "../forecast-weather/forecast-weather";
 
 const CurrentWeather = ({
   name,
@@ -16,7 +16,7 @@ const CurrentWeather = ({
   ...props
 }) => {
 
- const [number, setNumber] = useState("");
+ const [number, setNumber] = useState();
  
   console.log(list)
   return (

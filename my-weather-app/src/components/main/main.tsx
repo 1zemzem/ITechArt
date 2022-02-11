@@ -3,22 +3,24 @@ import CurrentWeather from "../current-weather";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner/spinner";
 import { getDataResult, getForecastResult } from "../../services/api-sevice";
+import { IData } from "../types";
 import "./main.scss";
 
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
 const Main = () => {
-  const [error, setError] = useState();
+  const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [data, setData] = useState({
-    name: "",
-    weather: [0],
-    main: "",
-    clouds: "",
-    wind: "",
-    visibility: "",
-    icon: "",
-  });
+  const [data, setData] = useState<IData>({} as IData)
+  //  ({
+  //   name: "",
+  //   weather: [0],
+  //   main: "",
+  //   clouds: "",
+  //   wind: "",
+  //   visibility: "",
+  //   icon: "",
+  // });
   const [forecast, setForecast] = useState({
     list: [],
   });
@@ -26,7 +28,7 @@ const Main = () => {
   const [show, setShow] = useState(false);
   const [showForecast, setShowForecast] = useState(false);
 
-  const updateValue = async (e) => {
+  const updateValue = async (e:React.ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
   };
 
@@ -38,11 +40,11 @@ const Main = () => {
         setData(data);
         setShow(true);
         setShowForecast(false);
-        setError();
+        setError(false);
       })
       .catch((error) => {
         setIsLoaded(true);
-        setError(error);
+        setError(true);
         setShow(false);
       });
   };
@@ -53,11 +55,11 @@ const Main = () => {
         setIsLoaded(false);
         setForecast(data);
         setShowForecast(true);
-        setError();
+        setError(false);
       })
       .catch((error) => {
         setIsLoaded(true);
-        setError(error);
+        setError(true);
         setShowForecast(false);
       });
   };
@@ -100,8 +102,8 @@ const Main = () => {
           getDataForecast={getDataForecast}
           list={forecast.list}
           showForecast={showForecast}
-        />
-      )}
+        />        
+      )} 
     </>
   );
 }
