@@ -9,7 +9,7 @@ import "./main.scss";
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
 const Main = () => {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState<IData>({} as IData)
   //  ({
@@ -24,7 +24,7 @@ const Main = () => {
   const [forecast, setForecast] = useState({
     list: [],
   });
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState('');
   const [show, setShow] = useState(false);
   const [showForecast, setShowForecast] = useState(false);
 
@@ -40,11 +40,11 @@ const Main = () => {
         setData(data);
         setShow(true);
         setShowForecast(false);
-        setError(false);
+        setError('');
       })
       .catch((error) => {
         setIsLoaded(true);
-        setError(true);
+        setError(error);
         setShow(false);
       });
   };
@@ -55,11 +55,11 @@ const Main = () => {
         setIsLoaded(false);
         setForecast(data);
         setShowForecast(true);
-        setError(false);
+        setError('');
       })
       .catch((error) => {
         setIsLoaded(true);
-        setError(true);
+        setError(error);
         setShowForecast(false);
       });
   };

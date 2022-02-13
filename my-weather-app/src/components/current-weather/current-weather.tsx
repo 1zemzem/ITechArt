@@ -1,22 +1,34 @@
-import React, {useState} from "react";
+import React, {useState, FC} from "react";
 import "./current-weather.scss";
 import ForecastWeather from "../forecast-weather/forecast-weather";
+import { IData } from "../types";
 
-const CurrentWeather = ({
-  name,
-  weather,
-  main,
-  clouds,
-  wind,
-  visibility,
-  icon,
+interface CurrentWeatherProps {
+  data: IData,  
+  getDataForecast:() => {},  
+  list: [],   
+  showForecast:() => {},
+}
+
+interface Days {
+  forecastDays: number;
+}
+
+const CurrentWeather: FC<CurrentWeatherProps> = ({ 
+  // name,
+  // weather,
+  // main,
+  // clouds,
+  // wind,
+  // visibility,
+  // icon,  
+  data,
   getDataForecast,  
   list,   
   showForecast,
-  ...props
-}) => {
+  ...props }) => {  
 
- const [number, setNumber] = useState();
+ const [forecastDays, setForecastDays] = useState<Days | undefined>();
  
   console.log(list)
   return (
@@ -79,19 +91,19 @@ const CurrentWeather = ({
       
       <div className="selection-container">
         <div className="selection-container__row">
-          <button className="selection-container__row-button" onClick={() => { getDataForecast(); setNumber(3);}}>
+          <button className="selection-container__row-button" onClick={() => { getDataForecast(); setForecastDays(3);}}>
             Get 3-days forecast
           </button>
-          <button className="selection-container__row-button" onClick={() => { getDataForecast(); setNumber(5);}}>
+          <button className="selection-container__row-button" onClick={() => { getDataForecast(); setForecastDays(5);}}>
             Get 5-days forecast
           </button>
-          <button className="selection-container__row-button"  onClick={() => { getDataForecast(); setNumber(7);}}>
+          <button className="selection-container__row-button"  onClick={() => { getDataForecast(); setForecastDays(7);}}>
             Get 7-days forecast
           </button>
         </div>
       </div>
       { showForecast && (
-        <ForecastWeather list={list} number={number}/>
+        <ForecastWeather list={list} forecastDays={forecastDays}/>
       )}
       
     </>

@@ -1,7 +1,5 @@
 export interface IData {
   name: string;
-  weather: IWeather[];
-  main: IMain;
   clouds: {
     all: number;
   };
@@ -9,6 +7,8 @@ export interface IData {
     speed: number;
   };
   visibility: number;
+  weather: IWeather[];
+  main: IMain;
 }
 
 export interface IMain {
