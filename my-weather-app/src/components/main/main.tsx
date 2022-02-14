@@ -2,35 +2,22 @@ import React, { useState } from "react";
 import CurrentWeather from "../current-weather";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner/spinner";
-import { getDataResult,
-  //  getForecastResult
-   } from "../../services/api-sevice";
-import { IData } from "../types";
+import { getDataResult, getForecastResult } from "../../services/api-sevice";
+import { IData, IForecast } from "../types";
 import "./main.scss";
 
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
 const Main = () => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
-  const [data, setData] = useState<IData>({} as IData)
-  //  ({
-  //   name: "",
-  //   weather: [0],
-  //   main: "",
-  //   clouds: "",
-  //   wind: "",
-  //   visibility: "",
-  //   icon: "",
-  // });
-  // const [forecast, setForecast] = useState({
-  //   list: [],
-  // });
-  const [city, setCity] = useState('');
+  const [data, setData] = useState<IData>({} as IData);
+  const [forecast, setForecast] = useState<IForecast>({} as IForecast);
+  const [city, setCity] = useState("");
   const [show, setShow] = useState(false);
-  // const [showForecast, setShowForecast] = useState(false);
+  const [showForecast, setShowForecast] = useState(false);
 
-  const updateValue = async (e:React.ChangeEvent<HTMLInputElement>) => {
+  const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
   };
 
@@ -42,7 +29,7 @@ const Main = () => {
         setData(data);
         setShow(true);
         // setShowForecast(false);
-        setError('');
+        setError("");
       })
       .catch((error) => {
         setIsLoaded(true);
@@ -51,21 +38,21 @@ const Main = () => {
       });
   };
 
-  // const getDataForecast = async () => {
-  //   await getForecastResult(city)
-  //     .then((data) => {
-  //       setIsLoaded(false);
-  //       // setForecast(data);
-  //       // setShowForecast(true);
-  //       setError('');
-  //     })
-  //     .catch((error) => {
-  //       setIsLoaded(true);
-  //       setError(error);
-  //       // setShowForecast(false);
-  //     });
-  // };
-  
+  const getDataForecast = async () => {
+    await getForecastResult(city)
+      .then((data) => {
+        setIsLoaded(false);
+        setForecast(data);
+        setShowForecast(true);
+        setError("");
+      })
+      .catch((error) => {
+        setIsLoaded(true);
+        setError(error);
+        setShowForecast(false);
+      });
+  };
+
   return (
     <>
       <div className="card">
@@ -94,21 +81,14 @@ const Main = () => {
       {isLoaded && <Spinner />}
       {show && (
         <CurrentWeather
-        data={data}
-          // main={data.main}
-          // cityName={data.cityName}
-          // clouds={data.clouds}
-          // visibility={data.visibility}
-          // wind={data.wind}
-          // weather={data.weather[0].description}
-          // icon={data.weather[0].icon}
-          // getDataForecast={getDataForecast}
-          // list={forecast.list}
-          // showForecast={showForecast}
-        />        
-      )} 
+          data={data}
+          getDataForecast={getDataForecast}
+          list={forecast.list}
+          showForecast={showForecast}
+        />
+      )}
     </>
   );
-}
+};
 
 export default Main;

@@ -1,9 +1,9 @@
 // import React from "react";
 
-const API_KEY = "58b6f7c78582bffab3936dac99c31b25";
+const API_KEY: string = "58b6f7c78582bffab3936dac99c31b25";
 const getWeatherApiUrl = (city: string, apiKey: string) =>
   `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-const getForecastApiUrl = (city: string, apiKey: string) =>
+const getForecastApiUrl = (city: string, apiKey:string) =>
   `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&units=metric&cnt=7&appid=${apiKey}`;
 
 export const getDataResult = async (city: string) => {

@@ -25,3 +25,7 @@ export interface IWeather {
   icon: string
 };
 
+
+export interface IForecast {
+  list: [];
+};
