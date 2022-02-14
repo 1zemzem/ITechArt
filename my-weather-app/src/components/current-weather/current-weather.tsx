@@ -25,7 +25,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
       <div className="container">
         <div className="container__main">
           <div className="weather-card">
-            <div className="weather-card__title">{data.cityName}</div>
+            <div className="weather-card__title">{data.name}</div>
             <div className="weather-card__description">
               {data.weather[0].description}
             </div>
