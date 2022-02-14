@@ -1,18 +1,20 @@
-import React, {useState, FC} from "react";
+import React, {
+  // useState,
+   FC} from "react";
 import "./current-weather.scss";
-import ForecastWeather from "../forecast-weather/forecast-weather";
+// import ForecastWeather from "../forecast-weather/forecast-weather";
 import { IData } from "../types";
 
 interface CurrentWeatherProps {
-  data: IData,  
-  getDataForecast:() => {},  
-  list: [],   
-  showForecast:() => {},
+  data: IData,    
+  // getDataForecast:() => {},  
+  // list: [],   
+  // showForecast:() => boolean,
 }
 
-interface Days {
-  forecastDays: number;
-}
+// interface Days {
+//   forecastDays: number;
+// }
 
 const CurrentWeather: FC<CurrentWeatherProps> = ({ 
   // name,
@@ -23,32 +25,32 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
   // visibility,
   // icon,  
   data,
-  getDataForecast,  
-  list,   
-  showForecast,
+  // getDataForecast,  
+  // list,   
+  // showForecast,
   ...props }) => {  
 
- const [forecastDays, setForecastDays] = useState<Days | undefined>();
+//  const [forecastDays, setForecastDays] = useState<Days>();
  
-  console.log(list)
+  // console.log(list)
   return (
     <>
       <div className="container">
         <div className="container__main">
           <div className="weather-card">
-            <div className="weather-card__title">{name}</div>
-            <div className="weather-card__description">{weather}</div>
+            <div className="weather-card__title">{data.cityName}</div>
+            <div className="weather-card__description">{data.weather[0].description}</div>
             <img
               className="weather-card__icon"
-              src={`http://openweathermap.org/img/w/${icon}.png`}
+              src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
               alt="icon"
             />
             <div className="weather-card__temp">
               <div className="weather-card__temp-value">
-                <div className="weather-card__title">{main.temp}</div>
+                <div className="weather-card__title">{data.main.temp}</div>
               </div>
               <div>
-                min.temp {main.temp_min} °C / {main.temp_max} °C max.temp
+                min.temp {data.main.temp_min} °C / {data.main.temp_max} °C max.temp
               </div>
             </div>
           </div>
@@ -56,40 +58,40 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
         <div className="container-data">
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Wind</div>
-            <div className="container-data__info-row-value">{wind.speed} m/s</div>
+            <div className="container-data__info-row-value">{data.wind.speed} m/s</div>
           </div>
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Humidity</div>
             <div className="container-data__info-row-value">
-              {main.humidity} %
+              {data.main.humidity} %
             </div>
           </div>
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Pressure</div>
             <div className="container-data__info-row-value">
-              {main.pressure} mb
+              {data.main.pressure} mb
             </div>
           </div>
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Clouds</div>
-            <div className="container-data__info-row-value">{clouds.all} %</div>
+            <div className="container-data__info-row-value">{data.clouds.all} %</div>
           </div>
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Feels like</div>
             <div className="container-data__info-row-value">
-              {main.feels_like} °C
+              {data.main.feels_like} °C
             </div>            
           </div>
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Visibility</div>
             <div className="container-data__info-row-value">
-              {Math.round(visibility / 1000)}km
+              {Math.round(data.visibility / 1000)}km
             </div>
           </div>
         </div>
       </div>
       
-      <div className="selection-container">
+      {/* <div className="selection-container">
         <div className="selection-container__row">
           <button className="selection-container__row-button" onClick={() => { getDataForecast(); setForecastDays(3);}}>
             Get 3-days forecast
@@ -104,7 +106,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
       </div>
       { showForecast && (
         <ForecastWeather list={list} forecastDays={forecastDays}/>
-      )}
+      )} */}
       
     </>
   );

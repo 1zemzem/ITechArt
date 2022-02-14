@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import CurrentWeather from "../current-weather";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner/spinner";
-import { getDataResult, getForecastResult } from "../../services/api-sevice";
+import { getDataResult,
+  //  getForecastResult
+   } from "../../services/api-sevice";
 import { IData } from "../types";
 import "./main.scss";
 
@@ -21,12 +23,12 @@ const Main = () => {
   //   visibility: "",
   //   icon: "",
   // });
-  const [forecast, setForecast] = useState({
-    list: [],
-  });
+  // const [forecast, setForecast] = useState({
+  //   list: [],
+  // });
   const [city, setCity] = useState('');
   const [show, setShow] = useState(false);
-  const [showForecast, setShowForecast] = useState(false);
+  // const [showForecast, setShowForecast] = useState(false);
 
   const updateValue = async (e:React.ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
@@ -39,7 +41,7 @@ const Main = () => {
         setIsLoaded(false);
         setData(data);
         setShow(true);
-        setShowForecast(false);
+        // setShowForecast(false);
         setError('');
       })
       .catch((error) => {
@@ -49,20 +51,20 @@ const Main = () => {
       });
   };
 
-  const getDataForecast = async () => {
-    await getForecastResult(city)
-      .then((data) => {
-        setIsLoaded(false);
-        setForecast(data);
-        setShowForecast(true);
-        setError('');
-      })
-      .catch((error) => {
-        setIsLoaded(true);
-        setError(error);
-        setShowForecast(false);
-      });
-  };
+  // const getDataForecast = async () => {
+  //   await getForecastResult(city)
+  //     .then((data) => {
+  //       setIsLoaded(false);
+  //       // setForecast(data);
+  //       // setShowForecast(true);
+  //       setError('');
+  //     })
+  //     .catch((error) => {
+  //       setIsLoaded(true);
+  //       setError(error);
+  //       // setShowForecast(false);
+  //     });
+  // };
   
   return (
     <>
@@ -92,16 +94,17 @@ const Main = () => {
       {isLoaded && <Spinner />}
       {show && (
         <CurrentWeather
-          main={data.main}
-          name={data.name}
-          clouds={data.clouds}
-          visibility={data.visibility}
-          wind={data.wind}
-          weather={data.weather[0].description}
-          icon={data.weather[0].icon}
-          getDataForecast={getDataForecast}
-          list={forecast.list}
-          showForecast={showForecast}
+        data={data}
+          // main={data.main}
+          // cityName={data.cityName}
+          // clouds={data.clouds}
+          // visibility={data.visibility}
+          // wind={data.wind}
+          // weather={data.weather[0].description}
+          // icon={data.weather[0].icon}
+          // getDataForecast={getDataForecast}
+          // list={forecast.list}
+          // showForecast={showForecast}
         />        
       )} 
     </>

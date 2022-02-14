@@ -1,5 +1,5 @@
 export interface IData {
-  name: string;
+  cityName: string;
   clouds: {
     all: number;
   };
