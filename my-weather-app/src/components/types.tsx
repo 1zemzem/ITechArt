@@ -25,7 +25,40 @@ export interface IWeather {
   icon: string
 };
 
-
 export interface IForecast {
   list: [];
 };
+
+export enum DataActionTypes {
+  FETCH_DATA_BEGIN = "FETCH_DATA_BEGIN",
+  FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESs ",
+  FETCH_DATA_ERROR = "FETCH_DATA_ERROR",
+}
+
+interface FetchDataBegin {
+  type: DataActionTypes.FETCH_DATA_BEGIN,
+  payload?: any
+}
+
+interface FetchDataSuccess {
+  type: DataActionTypes.FETCH_DATA_SUCCESS;
+  payload?: any
+}
+
+interface FetchDataError {
+  type: DataActionTypes.FETCH_DATA_ERROR;
+  payload: string
+}
+
+export type FetchData = FetchDataBegin | FetchDataSuccess | FetchDataError;
+
+export interface MainState {
+  data: {};
+  isLoaded: boolean;
+  error: null | string;
+}
+
+export interface MainAction {
+  type: string;
+  payload?: any;
+}
