@@ -1,23 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import CurrentWeather from "../current-weather";
-// import ErrorIndicator from "../error-indicator";
+import ErrorIndicator from "../error-indicator";
 // import Spinner from "../spinner/spinner";
 // import { getDataResult, getForecastResult } from "../../services/api-sevice";
 // import { IData, IForecast } from "../types";
 import "./main.scss";
 import { useTypeSelector } from "../../hooks/useTypeSelector";
+import { useActions } from "../../hooks/useActions";
 
-const Main: React.FC = () => {
-  const{ data, error, isLoaded  } = useTypeSelector(state => state.data);
-  console.log(data, error, isLoaded)
+const Main = () => {
+  const { data, error, isLoaded } = useTypeSelector((state) => state.data);
+  console.log(data, error, isLoaded);
+
+  const { getDataResult } = useActions();
+
+  const getData = async () => {
+    getDataResult('London');
+    if (data) {
+      console.log(data);
+      // setIsLoaded(false);
+      // setData(data);
+      // setShow(true);
+      // // setShowForecast(false);
+      // setError("");
+    }
+    if (error) {
+      return <ErrorIndicator />;
+      // setIsLoaded(true);
+      // setError(error);
+      // setShow(false);
+    }
+  };
+  console.log(data);
+
   return (
-    <div>
+    <>
+      <div className="card">
+        <h1 className="card__title">Weather App</h1>
+        {/* <h2 className="card__subtitle">Today is {currentData}</h2> */}
+        <div className="card__search-container">
+          <div className="card__search-container-items">
+            <input
+              className="card__search-container-item-input"
+              placeholder="Enter your city name"
+              // onChange={updateValue}
+              type="text"
+              name="text"
+              // value={city}
+            />
+            <button
+              className="card__search-container-item-button"
+              onClick={getData}
+            >
+              Search
+            </button>
+          </div>
+        </div>
       </div>
-  )
-}
-
-
-
+    </>
+  );
+};
 
 // const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
@@ -34,22 +76,22 @@ const Main: React.FC = () => {
 //     setCity(e.target.value);
 //   };
 
-//   const getData = async () => {
-//     await getDataResult(city)
-//       .then((data) => {
-//         console.log(data);
-//         setIsLoaded(false);
-//         setData(data);
-//         setShow(true);
-//         // setShowForecast(false);
-//         setError("");
-//       })
-//       .catch((error) => {
-//         setIsLoaded(true);
-//         setError(error);
-//         setShow(false);
-//       });
-//   };
+// const getData = async () => {
+//   await getDataResult(city)
+//     .then((data) => {
+//       console.log(data);
+//       setIsLoaded(false);
+//       setData(data);
+//       setShow(true);
+//       // setShowForecast(false);
+//       setError("");
+//     })
+//     .catch((error) => {
+//       setIsLoaded(true);
+//       setError(error);
+//       setShow(false);
+//     });
+// };
 
 //   const getDataForecast = async () => {
 //     await getForecastResult(city)
@@ -68,28 +110,7 @@ const Main: React.FC = () => {
 
 //   return (
 //     <>
-//       <div className="card">
-//         <h1 className="card__title">Weather App</h1>
-//         <h2 className="card__subtitle">Today is {currentData}</h2>
-//         <div className="card__search-container">
-//           <div className="card__search-container-items">
-//             <input
-//               className="card__search-container-item-input"
-//               placeholder="Enter your city name"
-//               onChange={updateValue}
-//               type="text"
-//               name="text"
-//               value={city}
-//             />
-//             <button
-//               className="card__search-container-item-button"
-//               onClick={getData}
-//             >
-//               Search
-//             </button>
-//           </div>
-//         </div>
-//       </div>
+
 //       {error && <ErrorIndicator />}
 //       {isLoaded && <Spinner />}
 //       {show && (
