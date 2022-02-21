@@ -18,16 +18,16 @@ export interface IMain {
   humidity: number;
   pressure: number;
   feels_like: number;
-};
+}
 
 export interface IWeather {
   description: string;
-  icon: string
-};
+  icon: string;
+}
 
 export interface IForecast {
   list: [];
-};
+}
 
 export enum DataActionTypes {
   FETCH_DATA_BEGIN = "FETCH_DATA_BEGIN",
@@ -36,18 +36,18 @@ export enum DataActionTypes {
 }
 
 interface FetchDataBegin {
-  type: DataActionTypes.FETCH_DATA_BEGIN,
-  payload?: any
+  type: DataActionTypes.FETCH_DATA_BEGIN;
+  payload?: any;
 }
 
 interface FetchDataSuccess {
   type: DataActionTypes.FETCH_DATA_SUCCESS;
-  payload: IData
+  payload: IData;
 }
 
 interface FetchDataError {
   type: DataActionTypes.FETCH_DATA_ERROR;
-  payload: string
+  payload: boolean;
 }
 
 export type FetchData = FetchDataBegin | FetchDataSuccess | FetchDataError;
@@ -55,7 +55,7 @@ export type FetchData = FetchDataBegin | FetchDataSuccess | FetchDataError;
 export interface MainState {
   data: IData | null;
   isLoaded: boolean;
-  error: null | string;
+  error: boolean;
 }
 
 export interface MainAction {

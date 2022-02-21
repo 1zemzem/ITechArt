@@ -48,8 +48,8 @@ export const getDataResult = (city: any) => {
           return data;
         });
       dispatch({ type: DataActionTypes.FETCH_DATA_SUCCESS, payload: data});
-    } catch (e) {
-      dispatch({ type: DataActionTypes.FETCH_DATA_ERROR, payload: "Error" });
+    } catch (e) {     
+      dispatch({ type: DataActionTypes.FETCH_DATA_ERROR, payload: true });
     }
   };
 };

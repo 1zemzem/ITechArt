@@ -3,7 +3,7 @@ import { MainState, MainAction, DataActionTypes, IData } from "../../components/
 const initialState: MainState = {
   data: {} as IData,
   isLoaded: false,
-  error: null,
+  error: false,
 };
 
 export const dataReduser = (
@@ -14,19 +14,19 @@ export const dataReduser = (
     case DataActionTypes.FETCH_DATA_BEGIN:
       return {
         isLoaded: true,
-        error: null,
+        error: false,
         data: null,
       };
     case DataActionTypes.FETCH_DATA_SUCCESS:
       return {
         isLoaded: false,
-        error: null,
+        error: false,
         data: action.payload,
       };
     case DataActionTypes.FETCH_DATA_ERROR:
       return {
         isLoaded: false,
-        error: action.payload,
+        error: true,
         data: null,
       };
     default:

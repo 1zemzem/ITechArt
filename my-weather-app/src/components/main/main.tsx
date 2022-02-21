@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import CurrentWeather from "../current-weather";
+import CurrentWeather from "../current-weather";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner/spinner";
 // import { getDataResult, getForecastResult } from "../../services/api-sevice";
@@ -8,39 +8,44 @@ import "./main.scss";
 import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useActions } from "../../hooks/useActions";
 
-const Main: React.FC = () => {
+const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
+
+const Main= () => {
   const { data, error, isLoaded } = useTypeSelector((state) => state.data);
   console.log(data, error, isLoaded);
 
   const { getDataResult } = useActions();
 
   const getData = async () => {
-    getDataResult('London');
+    getDataResult("jj");
     if (data) {
-      console.log("njrtdrnjbds");
-      // setIsLoaded(false);
-      // setData(data);
-      // setShow(true);
-      // // setShowForecast(false);
-      // setError("");
+      return (
+        <CurrentWeather
+          data={data}
+          // getDataForecast={getDataForecast}
+          // list={forecast.list}
+          // showForecast={showForecast}
+        />
+      );
     }
     if (error) {
-      return <ErrorIndicator />;
-      // setIsLoaded(true);
-      // setError(error);
-      // setShow(false);
-    } else if (isLoaded) {
-      return <Spinner />
+      return <ErrorIndicator />
     }
-    
+    //   // setIsLoaded(true);
+    //   // setError(error);
+    //   // setShow(false);
+    // } else if (isLoaded) {
+    //   return <Spinner />;
+    // }
   };
   console.log(data);
 
   return (
     <>
+      
       <div className="card">
         <h1 className="card__title">Weather App</h1>
-        {/* <h2 className="card__subtitle">Today is {currentData}</h2> */}
+        <h2 className="card__subtitle">Today is {currentData}</h2>
         <div className="card__search-container">
           <div className="card__search-container-items">
             <input
@@ -60,11 +65,13 @@ const Main: React.FC = () => {
           </div>
         </div>
       </div>
+      {error && <ErrorIndicator />}
+      {isLoaded && <Spinner />}
+
     </>
   );
 };
 
-// const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
 // const Main = () => {
 //   const [error, setError] = useState("");

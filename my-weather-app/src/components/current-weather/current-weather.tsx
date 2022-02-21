@@ -5,21 +5,21 @@ import { IData } from "../types";
 
 interface CurrentWeatherProps {
   data: IData;
-  getDataForecast: () => {};
-  list: [];
-  showForecast: boolean;
+  // getDataForecast: () => {};
+  // list: [];
+  // showForecast: boolean;
 }
 
 const CurrentWeather: FC<CurrentWeatherProps> = ({
   data,
-  getDataForecast,
-  list,
-  showForecast,
+  // getDataForecast,
+  // list,
+  // showForecast,
   ...props
 }) => {
   const [forecastDays, setForecastDays] = useState(Number);
 
-  console.log(list);
+  // console.log(list);
   return (
     <>
       <div className="container">
@@ -90,7 +90,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
           <button
             className="selection-container__row-button"
             onClick={() => {
-              getDataForecast();
+              // getDataForecast();
               setForecastDays(3);
             }}
           >
@@ -99,7 +99,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
           <button
             className="selection-container__row-button"
             onClick={() => {
-              getDataForecast();
+              // getDataForecast();
               setForecastDays(5);
             }}
           >
@@ -108,7 +108,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
           <button
             className="selection-container__row-button"
             onClick={() => {
-              getDataForecast();
+              // getDataForecast();
               setForecastDays(7);
             }}
           >
@@ -116,9 +116,9 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
           </button>
         </div>
       </div>
-      {showForecast && (
+      {/* {showForecast && (
         <ForecastWeather list={list} forecastDays={forecastDays} />
-      )}
+      )} */}
     </>
   );
 };
