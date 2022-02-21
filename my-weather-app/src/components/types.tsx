@@ -53,7 +53,7 @@ interface FetchDataError {
 export type FetchData = FetchDataBegin | FetchDataSuccess | FetchDataError;
 
 export interface MainState {
-  data: {};
+  data: IData | null;
   isLoaded: boolean;
   error: null | string;
 }

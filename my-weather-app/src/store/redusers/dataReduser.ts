@@ -1,7 +1,7 @@
-import { MainState, MainAction, DataActionTypes } from "../../components/types";
+import { MainState, MainAction, DataActionTypes, IData } from "../../components/types";
 
 const initialState: MainState = {
-  data: {},
+  data: {} as IData,
   isLoaded: false,
   error: null,
 };
@@ -15,7 +15,7 @@ export const dataReduser = (
       return {
         isLoaded: true,
         error: null,
-        data: {},
+        data: null,
       };
     case DataActionTypes.FETCH_DATA_SUCCESS:
       return {
@@ -27,7 +27,7 @@ export const dataReduser = (
       return {
         isLoaded: false,
         error: action.payload,
-        data: {},
+        data: null,
       };
     default:
       return state;

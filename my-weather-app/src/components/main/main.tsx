@@ -8,7 +8,7 @@ import "./main.scss";
 import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useActions } from "../../hooks/useActions";
 
-const Main = () => {
+const Main: React.FC = () => {
   const { data, error, isLoaded } = useTypeSelector((state) => state.data);
   console.log(data, error, isLoaded);
 
@@ -17,7 +17,7 @@ const Main = () => {
   const getData = async () => {
     getDataResult('London');
     if (data) {
-      console.log(data);
+      console.log("njrtdrnjbds");
       // setIsLoaded(false);
       // setData(data);
       // setShow(true);
