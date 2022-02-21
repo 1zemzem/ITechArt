@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import CurrentWeather from "../current-weather";
 import ErrorIndicator from "../error-indicator";
-// import Spinner from "../spinner/spinner";
+import Spinner from "../spinner/spinner";
 // import { getDataResult, getForecastResult } from "../../services/api-sevice";
 // import { IData, IForecast } from "../types";
 import "./main.scss";
@@ -29,7 +29,10 @@ const Main = () => {
       // setIsLoaded(true);
       // setError(error);
       // setShow(false);
+    } else if (isLoaded) {
+      return <Spinner />
     }
+    
   };
   console.log(data);
 

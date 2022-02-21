@@ -42,7 +42,7 @@ interface FetchDataBegin {
 
 interface FetchDataSuccess {
   type: DataActionTypes.FETCH_DATA_SUCCESS;
-  payload: {}
+  payload: IData
 }
 
 interface FetchDataError {
