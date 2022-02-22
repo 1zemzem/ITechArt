@@ -1,5 +1,5 @@
 export interface IForecast {
-    list: [];
+    list: [] | null;
   }
   
   export enum ForecastActionTypes {
@@ -24,3 +24,14 @@ export interface IForecast {
   }
   
   export type FetchForecast = FetchForecastBegin | FetchForecastSuccess | FetchForecastError;
+
+  export interface ForecastState {
+    list: IForecast | null;
+    isLoaded: boolean;
+    error: boolean;
+    city: any;
+  }
+  export interface ForecastAction {
+    type: string;
+    payload?: any;
+  }

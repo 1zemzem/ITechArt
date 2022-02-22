@@ -7,22 +7,28 @@ import Spinner from "../spinner/spinner";
 import "./main.scss";
 import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useActions } from "../../hooks/useActions";
+import { useDispatch } from "react-redux";
+import { DataActionTypes } from "../../types/types";
 
 
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
 const Main= () => {
-  const { data, error, isLoaded } = useTypeSelector((state) => state.data);
-  console.log(data, error, isLoaded);
+  const { data, error, isLoaded, city } = useTypeSelector((state) => state.data);
+  console.log(city, data, error, isLoaded);
 
   const { getDataResult } = useActions();
+ const dispatch = useDispatch();
 
   const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
+    dispatch({type:DataActionTypes.ADD_CITY, payload: e.target.value});
+    e.preventDefault()
+    getData()
   };
 
   const getData = async () => {
-    getDataResult("London");
+    getDataResult(city);
     // if (data) {
               // getDataForecast={getDataForecast}
           // list={forecast.list}
@@ -30,15 +36,15 @@ const Main= () => {
     //     />
     //   );
     // }
-    // if (error) {
-    //   return <ErrorIndicator />
-    // }
-    // //   // setIsLoaded(true);
-    // //   // setError(error);
-    // //   // setShow(false);
-    // if (isLoaded) {
-    //   return <Spinner />;
-    // }
+  //   if (error) {
+  //     return <ErrorIndicator />
+  //   }
+  //   //   // setIsLoaded(true);
+  //   //   // setError(error);
+  //   //   // setShow(false);
+  //   if (isLoaded) {
+  //     return <Spinner />;
+  //   }
   };
   console.log(data);
   
@@ -56,7 +62,7 @@ const Main= () => {
               onChange={updateValue}
               type="text"
               name="text"
-              // value={city}
+              // value=
             />
             <button
               className="card__search-container-item-button"
@@ -69,7 +75,14 @@ const Main= () => {
       </div>
       {error && <ErrorIndicator />}
       {isLoaded && <Spinner />}
-      {data && <div>ddd</div>}
+      {data && 
+      <CurrentWeather
+          // data={data}
+          // getDataForecast={getDataForecast}
+          // list={forecast.list}
+          // showForecast={showForecast}
+        />
+        }
 
     </>
   );
