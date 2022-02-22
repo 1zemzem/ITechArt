@@ -1,7 +1,7 @@
 import React, { useState, FC } from "react";
 import "./current-weather.scss";
 import ForecastWeather from "../forecast-weather/forecast-weather";
-import { IData } from "../types";
+import { IData } from "../../types/types";
 
 interface CurrentWeatherProps {
   data: IData;

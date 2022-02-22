@@ -1,9 +1,10 @@
-import { MainState, MainAction, DataActionTypes, IData } from "../../components/types";
+import { MainState, MainAction, DataActionTypes, IData } from "../../types/types";
 
 const initialState: MainState = {
   data: {} as IData,
   isLoaded: false,
   error: false,
+  // value: 
 };
 
 export const dataReduser = (

@@ -8,6 +8,7 @@ import "./main.scss";
 import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useActions } from "../../hooks/useActions";
 
+
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
 const Main= () => {
@@ -16,30 +17,31 @@ const Main= () => {
 
   const { getDataResult } = useActions();
 
+  const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+  };
+
   const getData = async () => {
-    getDataResult("jj");
-    if (data) {
-      return (
-        <CurrentWeather
-          data={data}
-          // getDataForecast={getDataForecast}
+    getDataResult("London");
+    // if (data) {
+              // getDataForecast={getDataForecast}
           // list={forecast.list}
           // showForecast={showForecast}
-        />
-      );
-    }
-    if (error) {
-      return <ErrorIndicator />
-    }
-    //   // setIsLoaded(true);
-    //   // setError(error);
-    //   // setShow(false);
-    // } else if (isLoaded) {
+    //     />
+    //   );
+    // }
+    // if (error) {
+    //   return <ErrorIndicator />
+    // }
+    // //   // setIsLoaded(true);
+    // //   // setError(error);
+    // //   // setShow(false);
+    // if (isLoaded) {
     //   return <Spinner />;
     // }
   };
   console.log(data);
-
+  
   return (
     <>
       
@@ -51,7 +53,7 @@ const Main= () => {
             <input
               className="card__search-container-item-input"
               placeholder="Enter your city name"
-              // onChange={updateValue}
+              onChange={updateValue}
               type="text"
               name="text"
               // value={city}
@@ -67,6 +69,7 @@ const Main= () => {
       </div>
       {error && <ErrorIndicator />}
       {isLoaded && <Spinner />}
+      {data && <div>ddd</div>}
 
     </>
   );
@@ -82,9 +85,9 @@ const Main= () => {
 //   const [show, setShow] = useState(false);
 //   const [showForecast, setShowForecast] = useState(false);
 
-//   const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setCity(e.target.value);
-//   };
+  // const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setCity(e.target.value);
+  // };
 
 // const getData = async () => {
 //   await getDataResult(city)

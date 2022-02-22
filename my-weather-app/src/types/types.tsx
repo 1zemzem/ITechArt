@@ -25,10 +25,6 @@ export interface IWeather {
   icon: string;
 }
 
-export interface IForecast {
-  list: [];
-}
-
 export enum DataActionTypes {
   FETCH_DATA_BEGIN = "FETCH_DATA_BEGIN",
   FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESs ",
@@ -56,6 +52,7 @@ export interface MainState {
   data: IData | null;
   isLoaded: boolean;
   error: boolean;
+  // value: string;
 }
 
 export interface MainAction {

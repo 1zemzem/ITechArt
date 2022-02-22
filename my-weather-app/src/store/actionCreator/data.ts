@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
-import { DataActionTypes, FetchData } from "../../components/types";
-import { dataReduser } from "../redusers/dataReduser";
+import { DataActionTypes, FetchData } from "../../types/types";
+import { FetchForecast, ForecastActionTypes } from "../../types/typesForecast";
 
 const API_KEY: string = "58b6f7c78582bffab3936dac99c31b25";
 const getWeatherApiUrl = (city: string, apiKey: string) =>
@@ -22,34 +22,44 @@ const getForecastApiUrl = (city: string, apiKey: string) =>
 //     });
 // };
 
-// const getForecastResult = async (city: string) => {
-//   return await fetch(getForecastApiUrl(city, API_KEY))
-// .then((res) => {
-//   if (!res.ok) {
-//     return Promise.reject(new Error(res.statusText));
-//   } else {
-//     return res.json();
-//   }
-// })
-// .then((data) => {
-//   return data;
-// });
-// };
-
-export const getDataResult = (city: any) => {
+export const getDataResult = (city: string) => {
   return async (dispatch: Dispatch<FetchData>) => {
-    try {
-      dispatch({ type: DataActionTypes.FETCH_DATA_BEGIN });
-      const data: any = await fetch(getWeatherApiUrl(city, API_KEY))
-        .then((res) => {
+    dispatch({ type: DataActionTypes.FETCH_DATA_BEGIN });
+    const data: any = await fetch(getWeatherApiUrl(city, API_KEY))
+      .then((res) => {
+        if (!res.ok) {
+          dispatch({ type: DataActionTypes.FETCH_DATA_ERROR, payload: true });
+        } else {
           return res.json();
-        })
-        .then((data) => {
-          return data;
-        });
-      dispatch({ type: DataActionTypes.FETCH_DATA_SUCCESS, payload: data});
-    } catch (e) {     
-      dispatch({ type: DataActionTypes.FETCH_DATA_ERROR, payload: true });
-    }
+        }
+      })
+      .then((data) => {
+        return data;
+      });
+    dispatch({ type: DataActionTypes.FETCH_DATA_SUCCESS, payload: data });
+  };
+};
+
+export const getForecastResult = (city: string) => {
+  return async (dispatch: Dispatch<FetchForecast>) => {
+    dispatch({ type: ForecastActionTypes.FETCH_FORECAST_BEGIN });
+    const data: any = await fetch(getForecastApiUrl(city, API_KEY))
+      .then((res) => {
+        if (!res.ok) {
+          dispatch({
+            type: ForecastActionTypes.FETCH_FORECAST_ERROR,
+            payload: true,
+          });
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        return data;
+      });
+    dispatch({
+      type: ForecastActionTypes.FETCH_FORECAST_SUCCESS,
+      payload: data,
+    });
   };
 };
