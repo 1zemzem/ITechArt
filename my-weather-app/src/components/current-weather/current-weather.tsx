@@ -3,13 +3,14 @@ import "./current-weather.scss";
 import ForecastWeather from "../forecast-weather/forecast-weather";
 
 import { useTypeSelector } from "../../hooks/useTypeSelector";
+import { IData } from "../../types/types";
 
 
 // interface CurrentWeatherProps {
 //   data: IData;
-  // getDataForecast: () => {};
-  // list: IForecast;
-  // showForecast: boolean;
+//   // getDataForecast: () => {};
+//   // list: IForecast;
+//   // showForecast: boolean;
 // }
 
 // const CurrentWeather: FC<CurrentWeatherProps> = ({
@@ -19,20 +20,22 @@ import { useTypeSelector } from "../../hooks/useTypeSelector";
 //   // showForecast,
 //   ...props
 // }) => {
-  // const [forecastDays, setForecastDays] = useState(Number);
+//   // const [forecastDays, setForecastDays] = useState(Number);
 
-  // console.log(list);
+//   console.log(data);
   const CurrentWeather =() => {
     const { data } = useTypeSelector((state) => state.data);
     console.log(data);
     return (
       <>
-        <div className="container">
+      <div>hhhhhhhh</div>
+        {/* <div className="container">
           <div className="container__main">
             <div className="weather-card">
               <div className="weather-card__title">{data.name}</div>
               <div className="weather-card__description">
                 {data.weather[0].description}
+                description
               </div>
               <img
                 className="weather-card__icon"
@@ -123,12 +126,9 @@ import { useTypeSelector } from "../../hooks/useTypeSelector";
         </div>
         {/* {showForecast && (
           <ForecastWeather list={list} forecastDays={forecastDays} />
-        )} */}
+        )} */} */&rbrace;
       </>
     );
-  }
-  
+  } 
  
-
-
 export default CurrentWeather;

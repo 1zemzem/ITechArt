@@ -10,47 +10,38 @@ import { useActions } from "../../hooks/useActions";
 import { useDispatch } from "react-redux";
 import { DataActionTypes } from "../../types/types";
 
-
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
-const Main= () => {
-  const { data, error, isLoaded, city } = useTypeSelector((state) => state.data);
+const Main = () => {
+  const { data, error, isLoaded, city } = useTypeSelector(
+    (state) => state.data
+  );
   console.log(city, data, error, isLoaded);
 
   const { getDataResult } = useActions();
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
-    dispatch({type:DataActionTypes.ADD_CITY, payload: e.target.value});
-    e.preventDefault()
-    getData()
+    dispatch({ type: DataActionTypes.ADD_CITY, payload: e.target.value });
+    e.preventDefault();
   };
 
   const getData = async () => {
     getDataResult(city);
     // if (data) {
-              // getDataForecast={getDataForecast}
-          // list={forecast.list}
-          // showForecast={showForecast}
+    // getDataForecast={getDataForecast}
+    // list={forecast.list}
+    // showForecast={showForecast}
     //     />
     //   );
     // }
-  //   if (error) {
-  //     return <ErrorIndicator />
-  //   }
-  //   //   // setIsLoaded(true);
-  //   //   // setError(error);
-  //   //   // setShow(false);
-  //   if (isLoaded) {
-  //     return <Spinner />;
-  //   }
+    
   };
   console.log(data);
-  
+
   return (
     <>
-      
       <div className="card">
         <h1 className="card__title">Weather App</h1>
         <h2 className="card__subtitle">Today is {currentData}</h2>
@@ -61,12 +52,11 @@ const Main= () => {
               placeholder="Enter your city name"
               onChange={updateValue}
               type="text"
-              name="text"
-              // value=
+              name="text"              
             />
             <button
               className="card__search-container-item-button"
-              onClick={getData}
+              onClick={() => dispatch(getData())}
             >
               Search
             </button>
@@ -75,19 +65,17 @@ const Main= () => {
       </div>
       {error && <ErrorIndicator />}
       {isLoaded && <Spinner />}
-      {data && 
-      <CurrentWeather
-          // data={data}
-          // getDataForecast={getDataForecast}
-          // list={forecast.list}
-          // showForecast={showForecast}
+      {data && (
+        <CurrentWeather
+        // data={data}
+        // getDataForecast={getDataForecast}
+        // list={forecast.list}
+        // showForecast={showForecast}
         />
-        }
-
+      )}
     </>
   );
 };
-
 
 // const Main = () => {
 //   const [error, setError] = useState("");
@@ -98,9 +86,9 @@ const Main= () => {
 //   const [show, setShow] = useState(false);
 //   const [showForecast, setShowForecast] = useState(false);
 
-  // const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setCity(e.target.value);
-  // };
+// const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
+//   setCity(e.target.value);
+// };
 
 // const getData = async () => {
 //   await getDataResult(city)
