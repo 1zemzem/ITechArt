@@ -2,19 +2,16 @@ import React from "react";
 import CurrentWeather from "../current-weather";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner/spinner";
-// import { getDataResult, getForecastResult } from "../../services/api-sevice";
-// import { IData, IForecast } from "../types";
 import "./main.scss";
 import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useActions } from "../../hooks/useActions";
 import { useDispatch } from "react-redux";
 import { DataActionTypes } from "../../types/types";
 import { ForecastActionTypes } from "../../types/typesForecast";
-// import { getForecastResult } from "../../store/actionCreator/data";
 
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
-const Main = () => {
+const Main: React.FC = () => {
   const { data, error, isLoaded, city } = useTypeSelector(
     (state) => state.data
   );
@@ -34,12 +31,7 @@ const Main = () => {
     getDataResult(city);
   };
  
-  // const getDataForecast = async() => {
-  //   getForecastResult(city);
-  // }
-  // console.log(data);
-
-  return (
+    return (
     <>
       <div className="card">
         <h1 className="card__title">Weather App</h1>

@@ -29,7 +29,7 @@ export const dataReduser = (
         ...state,
         isLoaded: true,
         error: null,
-        // data: null,
+        data: null,
         // city: action.payload,
       };
     case DataActionTypes.FETCH_DATA_SUCCESS:
