@@ -9,6 +9,7 @@ import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useActions } from "../../hooks/useActions";
 import { useDispatch } from "react-redux";
 import { DataActionTypes } from "../../types/types";
+import { ForecastActionTypes } from "../../types/typesForecast";
 
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
@@ -24,6 +25,7 @@ const Main = () => {
   const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     dispatch({ type: DataActionTypes.ADD_CITY, payload: e.target.value });
+    dispatch({type: ForecastActionTypes.ADD_CITY, payload: e.target.value})
     e.preventDefault();
   };
 
@@ -63,7 +65,10 @@ const Main = () => {
           </div>
         </div>
       </div>
-      {error && <ErrorIndicator />}
+      {error &&
+      
+      <ErrorIndicator />
+      }
       {isLoaded && <Spinner />}
       {data && (
         <CurrentWeather

@@ -8,7 +8,7 @@
 const initialState: MainState = {
   data: {} as IData,
   isLoaded: false,
-  error: false,
+  error: null,
   city: "",
 };
 
@@ -27,7 +27,7 @@ export const dataReduser = (
       return {
         ...state,
         isLoaded: true,
-        // error: false,
+        // error: null,
         // data: null,
         // city: action.payload,
       };
@@ -35,7 +35,7 @@ export const dataReduser = (
       return {
         ...state,
         isLoaded: false,
-        error: false,
+        // error: null,
         data: action.payload,
         // city: action.payload,
       };
@@ -43,7 +43,7 @@ export const dataReduser = (
       return {
         ...state,
         isLoaded: false,
-        error: true,
+        error: action.payload,
         // data: null,
         // city: null,
       };

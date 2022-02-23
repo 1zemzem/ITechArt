@@ -1,9 +1,9 @@
 import {
-    ForecastState, ForecastAction, IForecast, ForecastActionTypes
+    ForecastState, ForecastAction, ForecastActionTypes, IForecast
   } from '../../types/typesForecast';
 
   const initialState: ForecastState = {
-    list: {} as IForecast ,
+    list: {} as IForecast,
     isLoaded: false,
     error: false,
     city: "",
@@ -14,11 +14,11 @@ export const forecastReduser = (
     action: ForecastAction
   ): ForecastState => {
     switch (action.type) {
-      // case ForecastActionTypes.ADD_CITY:
-      //   return {
-      //     ...state,
-      //     city: action.payload,
-      //   };
+      case ForecastActionTypes.ADD_CITY:
+        return {
+          ...state,
+          city: action.payload,
+        };
   
       case ForecastActionTypes.FETCH_FORECAST_BEGIN:
         return {
@@ -40,7 +40,7 @@ export const forecastReduser = (
         return {
           ...state,
           isLoaded: false,
-          error: true,
+          error: action.payload,
           // data: null,
           // city: null,
         };
