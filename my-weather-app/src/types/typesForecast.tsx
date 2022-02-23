@@ -4,7 +4,7 @@ export interface IForecast {
 export interface ForecastState {
   list: IForecast | null;
   isLoaded: boolean;
-  error: boolean ;
+  error: boolean | null ;
   city: any;
 }
 export interface ForecastAction {
@@ -26,7 +26,7 @@ interface AddCity {
 
 interface FetchForecastBegin {
   type: ForecastActionTypes.FETCH_FORECAST_BEGIN;
-  payload?: any;
+  // payload?: any;
 }
 
 interface FetchForecastSuccess {
@@ -36,7 +36,7 @@ interface FetchForecastSuccess {
 
 interface FetchForecastError {
   type: ForecastActionTypes.FETCH_FORECAST_ERROR;
-  payload: boolean;
+  payload: true;
 }
 
 export type FetchForecast =
