@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CurrentWeather from "../current-weather";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner/spinner";
@@ -10,6 +10,7 @@ import { useActions } from "../../hooks/useActions";
 import { useDispatch } from "react-redux";
 import { DataActionTypes } from "../../types/types";
 import { ForecastActionTypes } from "../../types/typesForecast";
+// import { getForecastResult } from "../../store/actionCreator/data";
 
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
@@ -17,7 +18,7 @@ const Main = () => {
   const { data, error, isLoaded, city } = useTypeSelector(
     (state) => state.data
   );
-  console.log(city, data, error, isLoaded);
+  console.log(city, data, isLoaded, error);
 
   const { getDataResult } = useActions();
   const dispatch = useDispatch();
@@ -25,22 +26,18 @@ const Main = () => {
   const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     dispatch({ type: DataActionTypes.ADD_CITY, payload: e.target.value });
-    dispatch({type: ForecastActionTypes.ADD_CITY, payload: e.target.value})
-    e.preventDefault();
+    dispatch({ type: ForecastActionTypes.ADD_CITY, payload: e.target.value });
+    // e.preventDefault();
   };
 
   const getData = async () => {
     getDataResult(city);
-    // if (data) {
-    // getDataForecast={getDataForecast}
-    // list={forecast.list}
-    // showForecast={showForecast}
-    //     />
-    //   );
-    // }
-    
   };
-  console.log(data);
+ 
+  // const getDataForecast = async() => {
+  //   getForecastResult(city);
+  // }
+  // console.log(data);
 
   return (
     <>
@@ -54,7 +51,7 @@ const Main = () => {
               placeholder="Enter your city name"
               onChange={updateValue}
               type="text"
-              name="text"              
+              name="text"
             />
             <button
               className="card__search-container-item-button"
@@ -65,10 +62,7 @@ const Main = () => {
           </div>
         </div>
       </div>
-      {error &&
-      
-      <ErrorIndicator />
-      }
+      {error && <ErrorIndicator />}
       {isLoaded && <Spinner />}
       {data && (
         <CurrentWeather

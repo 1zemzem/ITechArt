@@ -1,12 +1,11 @@
   import {
     MainState,
     MainAction,
-    DataActionTypes,
-    IData,
+    DataActionTypes,    
   } from "../../types/types";
 
 const initialState: MainState = {
-  data: {} as IData,
+  data: null,
   isLoaded: false,
   error: null,
   city: "",
@@ -20,6 +19,8 @@ export const dataReduser = (
     case DataActionTypes.ADD_CITY:
       return {
         ...state,
+        error: null,
+        data: null,
         city: action.payload,
       };
 
@@ -27,7 +28,7 @@ export const dataReduser = (
       return {
         ...state,
         isLoaded: true,
-        // error: null,
+        error: null,
         // data: null,
         // city: action.payload,
       };

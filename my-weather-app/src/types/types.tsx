@@ -26,7 +26,7 @@ export interface IWeather {
 }
 
 export interface MainState {
-  data: IData;
+  data: IData | null;
   isLoaded: boolean;
   error: boolean | null;
   city: any;
