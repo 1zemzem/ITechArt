@@ -1,11 +1,12 @@
 export interface IForecast {
-  list: [] | null;
+  list: [];
 }
 export interface ForecastState {
-  list: IForecast | null;
+  data: IForecast;
   isLoaded: boolean;
-  error: boolean | null ;
+  error: boolean | null;
   city: any;
+  days: number;
 }
 export interface ForecastAction {
   type: string;
@@ -14,6 +15,7 @@ export interface ForecastAction {
 
 export enum ForecastActionTypes {
   ADD_CITY = "ADD_CITY",
+  ADD_NUMBERS = "ADD_NUMBERS",
   FETCH_FORECAST_BEGIN = "FETCH_FORECAST_BEGIN",
   FETCH_FORECAST_SUCCESS = "FETCH_FORECAST_SUCCESs ",
   FETCH_FORECAST_ERROR = "FETCH_FORECAST_ERROR",
@@ -39,8 +41,14 @@ interface FetchForecastError {
   payload: true;
 }
 
+interface AddNumbersOfDays {
+  type: ForecastActionTypes.ADD_CITY;
+  payload: number;
+}
+
 export type FetchForecast =
   | AddCity
   | FetchForecastBegin
   | FetchForecastSuccess
-  | FetchForecastError;
+  | FetchForecastError
+  | AddNumbersOfDays;

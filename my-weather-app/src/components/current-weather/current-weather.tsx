@@ -4,12 +4,12 @@ import ForecastWeather from "../forecast-weather/forecast-weather";
 import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useActions } from "../../hooks/useActions";
 import { useDispatch } from "react-redux";
+import { ForecastActionTypes } from "../../types/typesForecast";
 
 const CurrentWeather = () => {
-  const { data, error, isLoaded, city } = useTypeSelector(
+  const { data, city } = useTypeSelector(
     (state) => state.data
   );
-  console.log(city, data, isLoaded, error);
 
   const { getForecastResult } = useActions();
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ const CurrentWeather = () => {
   const getDataForecast = async () => {
     getForecastResult(city);
   };
-  console.log(data);
 
   return (
     <>
@@ -92,6 +91,7 @@ const CurrentWeather = () => {
             onClick={() => {
               dispatch(getDataForecast());
               // getDataForecast();
+              dispatch(({ type: ForecastActionTypes.ADD_NUMBERS , payload: 3 }));
               // setForecastDays(3);
             }}
           >
@@ -101,6 +101,8 @@ const CurrentWeather = () => {
             className="selection-container__row-button"
             onClick={() => {
               dispatch(getDataForecast());
+              dispatch(({ type: ForecastActionTypes.ADD_NUMBERS , payload: 5 }));
+              // dispatch(setForecastDays(5));
               // setForecastDays(5);
             }}
           >
@@ -110,6 +112,8 @@ const CurrentWeather = () => {
             className="selection-container__row-button"
             onClick={() => {
               dispatch(getDataForecast());
+              dispatch(({ type: ForecastActionTypes.ADD_NUMBERS , payload: 7 }));
+              // dispatch(setForecastDays(7));
               // setForecastDays(7);
             }}
           >
@@ -117,11 +121,8 @@ const CurrentWeather = () => {
           </button>
         </div>
       </div>
-      
-          {/* <ForecastWeather
-          //  list={list} forecastDays={forecastDays} 
-           /> */}
-        
+
+      <ForecastWeather />
     </>
   );
 };
