@@ -26,10 +26,11 @@ export interface IWeather {
 }
 
 export interface MainState {
-  data: IData | null;
+  data: IData;
   isLoaded: boolean;
   error: boolean | null;
   city: any;
+  show: boolean;
 }
 export interface MainAction {
   type: string;
@@ -37,6 +38,7 @@ export interface MainAction {
 }
 
 export enum DataActionTypes {
+  ADD_SHOW = "ADD_SHOW",
   ADD_CITY = "ADD_CITY",
   FETCH_DATA_BEGIN = "FETCH_DATA_BEGIN",
   FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESs ",
@@ -46,6 +48,11 @@ export enum DataActionTypes {
 interface AddCity {
   type: DataActionTypes.ADD_CITY;
   payload?: string;
+}
+
+interface AddShow {
+  type: DataActionTypes.ADD_SHOW;
+  payload: true;
 }
 
 interface FetchDataBegin {
@@ -67,4 +74,5 @@ export type FetchData =
   | AddCity
   | FetchDataBegin
   | FetchDataSuccess
-  | FetchDataError;
+  | FetchDataError
+  | AddShow

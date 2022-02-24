@@ -1,14 +1,16 @@
   import {
     MainState,
     MainAction,
-    DataActionTypes,    
+    DataActionTypes,
+    IData,    
   } from "../../types/types";
 
 const initialState: MainState = {
-  data: null,
+  data: {} as IData,
   isLoaded: false,
   error: null,
   city: "",
+  show: false
 };
 
 export const dataReduser = (
@@ -20,7 +22,7 @@ export const dataReduser = (
       return {
         ...state,
         error: null,
-        data: null,
+        // data: null,
         city: action.payload,
       };
 
@@ -29,10 +31,19 @@ export const dataReduser = (
         ...state,
         isLoaded: true,
         error: null,
-        data: null,
+        // data: null,
         // city: action.payload,
       };
     case DataActionTypes.FETCH_DATA_SUCCESS:
+      return {
+        ...state,
+        isLoaded: false,
+        // error: null,
+        data: action.payload,
+        show: action.payload
+        // city: action.payload,
+      };
+      case DataActionTypes.ADD_SHOW:
       return {
         ...state,
         isLoaded: false,

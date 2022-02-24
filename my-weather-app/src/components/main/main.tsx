@@ -12,10 +12,10 @@ import { ForecastActionTypes } from "../../types/typesForecast";
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
 const Main: React.FC = () => {
-  const { data, error, isLoaded, city } = useTypeSelector(
+  const { data, error, isLoaded, city, show } = useTypeSelector(
     (state) => state.data
   );
-  console.log(city, data, isLoaded, error);
+  console.log(city, data, isLoaded, error, show);
 
   const { getDataResult } = useActions();
   const dispatch = useDispatch();
@@ -23,15 +23,14 @@ const Main: React.FC = () => {
   const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     dispatch({ type: DataActionTypes.ADD_CITY, payload: e.target.value });
-    dispatch({ type: ForecastActionTypes.ADD_CITY, payload: e.target.value });
-    // e.preventDefault();
+    dispatch({ type: ForecastActionTypes.ADD_CITY, payload: e.target.value });    
   };
 
   const getData = async () => {
     getDataResult(city);
   };
- 
-    return (
+
+  return (
     <>
       <div className="card">
         <h1 className="card__title">Weather App</h1>
@@ -56,14 +55,7 @@ const Main: React.FC = () => {
       </div>
       {error && <ErrorIndicator />}
       {isLoaded && <Spinner />}
-      {data && (
-        <CurrentWeather
-        // data={data}
-        // getDataForecast={getDataForecast}
-        // list={forecast.list}
-        // showForecast={showForecast}
-        />
-      )}
+      {show && <CurrentWeather />}
     </>
   );
 };
