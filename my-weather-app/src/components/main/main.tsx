@@ -12,7 +12,7 @@ import { ForecastActionTypes } from "../../types/typesForecast";
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
 const Main: React.FC = () => {
-  const { error, isLoaded, city, show } = useTypeSelector(
+  const { error, isLoaded, city, show, data } = useTypeSelector(
     (state) => state.data
   );
 
@@ -21,7 +21,7 @@ const Main: React.FC = () => {
 
   const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: DataActionTypes.ADD_CITY, payload: e.target.value });
-    dispatch({ type: ForecastActionTypes.ADD_CITY, payload: e.target.value });
+    dispatch({ type: ForecastActionTypes.ADD_CITY_F, payload: e.target.value });
   };
 
   const getData = async () => {

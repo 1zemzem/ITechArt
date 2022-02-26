@@ -7,15 +7,15 @@ import { useDispatch } from "react-redux";
 import { ForecastActionTypes } from "../../types/typesForecast";
 
 const CurrentWeather = () => {
-  const { data, city } = useTypeSelector(
-    (state) => state.data
-  );
+  const { data } = useTypeSelector((state) => state.data);
+
+  const { cityF, showF } = useTypeSelector((state) => state.forecast);
 
   const { getForecastResult } = useActions();
   const dispatch = useDispatch();
 
   const getDataForecast = async () => {
-    getForecastResult(city);
+    getForecastResult(cityF);
   };
 
   return (
@@ -91,7 +91,7 @@ const CurrentWeather = () => {
             onClick={() => {
               dispatch(getDataForecast());
               // getDataForecast();
-              dispatch(({ type: ForecastActionTypes.ADD_NUMBERS , payload: 3 }));
+              dispatch({ type: ForecastActionTypes.ADD_NUMBERS, payload: 3 });
               // setForecastDays(3);
             }}
           >
@@ -101,7 +101,7 @@ const CurrentWeather = () => {
             className="selection-container__row-button"
             onClick={() => {
               dispatch(getDataForecast());
-              dispatch(({ type: ForecastActionTypes.ADD_NUMBERS , payload: 5 }));
+              dispatch({ type: ForecastActionTypes.ADD_NUMBERS, payload: 5 });
               // dispatch(setForecastDays(5));
               // setForecastDays(5);
             }}
@@ -112,7 +112,7 @@ const CurrentWeather = () => {
             className="selection-container__row-button"
             onClick={() => {
               dispatch(getDataForecast());
-              dispatch(({ type: ForecastActionTypes.ADD_NUMBERS , payload: 7 }));
+              dispatch({ type: ForecastActionTypes.ADD_NUMBERS, payload: 7 });
               // dispatch(setForecastDays(7));
               // setForecastDays(7);
             }}
@@ -121,8 +121,8 @@ const CurrentWeather = () => {
           </button>
         </div>
       </div>
-
-      <ForecastWeather />
+      {showF && <ForecastWeather />}
+      {/* <ForecastWeather /> */}
     </>
   );
 };

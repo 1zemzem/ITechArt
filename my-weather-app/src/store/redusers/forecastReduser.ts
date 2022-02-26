@@ -6,11 +6,12 @@ import {
 } from "../../types/typesForecast";
 
 const initialState: ForecastState = {
-  data: {} as IForecast,
+  forecast: {} as IForecast,
   isLoaded: false,
   error: null,
-  city: "",
+  cityF: "",
   days: 0,
+  showF: false,
 };
 
 export const forecastReduser = (
@@ -18,13 +19,13 @@ export const forecastReduser = (
   action: ForecastAction
 ): ForecastState => {
   switch (action.type) {
-    case ForecastActionTypes.ADD_CITY:
+    case ForecastActionTypes.ADD_CITY_F:
       return {
         ...state,
         error: null,
         // list: null,
-        city: action.payload,
-      };      
+        cityF: action.payload,
+      };
     case ForecastActionTypes.FETCH_FORECAST_BEGIN:
       return {
         ...state,
@@ -38,17 +39,18 @@ export const forecastReduser = (
         ...state,
         isLoaded: false,
         // error: null,
-        data: action.payload,
+        forecast: action.payload,
+        showF: true,
         // city: action.payload,
       };
-      case ForecastActionTypes.ADD_NUMBERS:
-        return {
-          ...state,
-          // error: null,
-          // list: null,
-          // city: action.payload,
-          days: action.payload,
-        };
+    case ForecastActionTypes.ADD_NUMBERS:
+      return {
+        ...state,
+        // error: null,
+        // list: null,
+        // city: action.payload,
+        days: action.payload,
+      };
     case ForecastActionTypes.FETCH_FORECAST_ERROR:
       return {
         ...state,

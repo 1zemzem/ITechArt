@@ -8,9 +8,9 @@
 const initialState: MainState = {
   data: {} as IData,
   isLoaded: false,
-  error: null,
+  error: false,
   city: "",
-  show: false
+  show: false,
 };
 
 export const dataReduser = (
@@ -21,16 +21,15 @@ export const dataReduser = (
     case DataActionTypes.ADD_CITY:
       return {
         ...state,
-        error: null,
+        // error: null,
         // data: null,
         city: action.payload,
       };
-
     case DataActionTypes.FETCH_DATA_BEGIN:
       return {
         ...state,
         isLoaded: true,
-        error: null,
+        // error: null,
         // data: null,
         // city: action.payload,
       };
@@ -40,22 +39,15 @@ export const dataReduser = (
         isLoaded: false,
         // error: null,
         data: action.payload,
-        show: action.payload
+        show: true,
         // city: action.payload,
-      };
-      case DataActionTypes.ADD_SHOW:
-      return {
-        ...state,
-        isLoaded: false,
-        // error: null,
-        data: action.payload,
-        // city: action.payload,
-      };
+      };      
     case DataActionTypes.FETCH_DATA_ERROR:
       return {
         ...state,
         isLoaded: false,
         error: action.payload,
+        show: false
         // data: null,
         // city: null,
       };

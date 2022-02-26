@@ -8,20 +8,6 @@ const getWeatherApiUrl = (city: string, apiKey: string) =>
 const getForecastApiUrl = (city: string, apiKey: string) =>
   `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&units=metric&cnt=7&appid=${apiKey}`;
 
-// const getDataResult = async (city: string) => {
-//   return await fetch(getWeatherApiUrl(city, API_KEY))
-//     .then((res) => {
-//       if (!res.ok) {
-//         return Promise.reject(new Error(res.statusText));
-//       } else {
-//         return res.json();
-//       }
-//     })
-//     .then((data) => {
-//       return data;
-//     });
-// };
-
 export const getDataResult = (city: string) => {
   return async (dispatch: Dispatch<FetchData>) => {
     dispatch({ type: DataActionTypes.FETCH_DATA_BEGIN });

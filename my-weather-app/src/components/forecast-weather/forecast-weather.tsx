@@ -13,10 +13,10 @@ function getCurrentDate(itemDate: number) {
 }
 
 const ForecastWeather = () => {
-  const { data, days } = useTypeSelector((state) => state.forecast);
-  console.log(data.list);
+  const { forecast, days } = useTypeSelector((state) => state.forecast);
+  console.log(forecast.list);
 
-  const listItems = data.list.slice(0, days).map((item: any) => (
+  const listItems = forecast.list.slice(0, days).map((item: any) => (
     <div className="f-container-forecast__item" key={item.dt}>
       <div className="f-container-forecast__item-date">
         {getCurrentDate(item.dt)}
@@ -47,7 +47,7 @@ const ForecastWeather = () => {
     <div className="f-container">
       <div className="f-container-forecast">
         {listItems}
-        forecast
+        {/* forecast */}
       </div>
     </div>
   );
