@@ -14,7 +14,8 @@ export const getDataResult = (city: string) => {
     const data: any = await fetch(getWeatherApiUrl(city, API_KEY))
       .then((res) => {
         if (!res.ok) {
-          dispatch({ type: DataActionTypes.FETCH_DATA_ERROR, payload: true });
+          dispatch({ type: DataActionTypes.FETCH_DATA_ERROR, payload: true
+           });
         } else {
           return res.json();
         }

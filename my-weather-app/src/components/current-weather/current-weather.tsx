@@ -5,8 +5,6 @@ import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useActions } from "../../hooks/useActions";
 import { useDispatch } from "react-redux";
 import { ForecastActionTypes } from "../../types/typesForecast";
-import ErrorIndicator from "../error-indicator";
-import Spinner from "../spinner";
 
 const CurrentWeather = () => {
   const { data } = useTypeSelector((state) => state.data);

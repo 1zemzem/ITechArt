@@ -20,36 +20,27 @@ export const dataReduser = (
   switch (action.type) {
     case DataActionTypes.ADD_CITY:
       return {
-        ...state,
-        // error: null,
-        // data: null,
+        ...state,        
         city: action.payload,
       };
     case DataActionTypes.FETCH_DATA_BEGIN:
       return {
         ...state,
-        isLoaded: true,
-        // error: null,
-        // data: null,
-        city: action.payload,
+        isLoaded: true,        
       };
       case DataActionTypes.FETCH_DATA_ERROR:
         return {
-          ...state,
+          ...state,          
           isLoaded: false,
-          error: action.payload,
-          // show: false,
-          // data: null,
-          // city: null,
+          error: action.payload,         
         };
     case DataActionTypes.FETCH_DATA_SUCCESS:
       return {
         ...state,
         isLoaded: false,
-        // error: false,
         data: action.payload,
-        show: true,
-        city: action.payload,
+        show: true,   
+        error: false,     
       };      
     
     default:

@@ -24,11 +24,20 @@ const Main: React.FC = () => {
     dispatch({ type: ForecastActionTypes.ADD_CITY_F, payload: e.target.value });
   };
 
+  // const getData = async () => {
+  //   try {
+  //     getDataResult(city);
+  //   } catch (error) {
+  //     dispatch({ type: DataActionTypes.FETCH_DATA_ERROR, payload: true})
+  //   }
+  // };
+
   const getData = async () => {
     getDataResult(city);
     console.log(error);
   };
   console.log(error);
+
   return (
     <>
       <div className="card">
