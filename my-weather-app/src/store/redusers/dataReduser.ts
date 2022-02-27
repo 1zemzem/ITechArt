@@ -31,26 +31,27 @@ export const dataReduser = (
         isLoaded: true,
         // error: null,
         // data: null,
-        // city: action.payload,
+        city: action.payload,
       };
+      case DataActionTypes.FETCH_DATA_ERROR:
+        return {
+          ...state,
+          isLoaded: false,
+          error: action.payload,
+          // show: false,
+          // data: null,
+          // city: null,
+        };
     case DataActionTypes.FETCH_DATA_SUCCESS:
       return {
         ...state,
         isLoaded: false,
-        // error: null,
+        // error: false,
         data: action.payload,
         show: true,
-        // city: action.payload,
+        city: action.payload,
       };      
-    case DataActionTypes.FETCH_DATA_ERROR:
-      return {
-        ...state,
-        isLoaded: false,
-        error: action.payload,
-        show: false
-        // data: null,
-        // city: null,
-      };
+    
     default:
       return state;
   }

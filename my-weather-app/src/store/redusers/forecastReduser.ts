@@ -8,7 +8,7 @@ import {
 const initialState: ForecastState = {
   forecast: {} as IForecast,
   isLoaded: false,
-  error: null,
+  error: false,
   cityF: "",
   days: 0,
   showF: false,
@@ -22,7 +22,7 @@ export const forecastReduser = (
     case ForecastActionTypes.ADD_CITY_F:
       return {
         ...state,
-        error: null,
+        // error: null,
         // list: null,
         cityF: action.payload,
       };
@@ -30,10 +30,19 @@ export const forecastReduser = (
       return {
         ...state,
         isLoaded: true,
-        error: null,
+        // error: null,
         // data: null,
         // city: action.payload,
       };
+      case ForecastActionTypes.FETCH_FORECAST_ERROR:
+        return {
+          ...state,
+          isLoaded: false,
+          error: action.payload,
+          // show: false,
+          // data: null,
+          // city: null,
+        };
     case ForecastActionTypes.FETCH_FORECAST_SUCCESS:
       return {
         ...state,
@@ -50,15 +59,7 @@ export const forecastReduser = (
         // list: null,
         // city: action.payload,
         days: action.payload,
-      };
-    case ForecastActionTypes.FETCH_FORECAST_ERROR:
-      return {
-        ...state,
-        isLoaded: false,
-        error: action.payload,
-        // data: null,
-        // city: null,
-      };
+      };    
     default:
       return state;
   }

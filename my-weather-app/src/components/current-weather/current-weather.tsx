@@ -5,16 +5,19 @@ import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useActions } from "../../hooks/useActions";
 import { useDispatch } from "react-redux";
 import { ForecastActionTypes } from "../../types/typesForecast";
+import ErrorIndicator from "../error-indicator";
+import Spinner from "../spinner";
 
 const CurrentWeather = () => {
   const { data } = useTypeSelector((state) => state.data);
 
-  const { cityF, showF } = useTypeSelector((state) => state.forecast);
+  const { cityF, showF, forecast, error, isLoaded } = useTypeSelector((state) => state.forecast);
 
   const { getForecastResult } = useActions();
   const dispatch = useDispatch();
 
-  const getDataForecast = async () => {
+  const getDataForecast = (Ndays: number) => {
+    dispatch({ type: ForecastActionTypes.ADD_NUMBERS, payload: Ndays });
     getForecastResult(cityF);
   };
 
@@ -89,10 +92,7 @@ const CurrentWeather = () => {
           <button
             className="selection-container__row-button"
             onClick={() => {
-              dispatch(getDataForecast());
-              // getDataForecast();
-              dispatch({ type: ForecastActionTypes.ADD_NUMBERS, payload: 3 });
-              // setForecastDays(3);
+              dispatch(getDataForecast(3));
             }}
           >
             Get 3-days forecast
@@ -100,10 +100,7 @@ const CurrentWeather = () => {
           <button
             className="selection-container__row-button"
             onClick={() => {
-              dispatch(getDataForecast());
-              dispatch({ type: ForecastActionTypes.ADD_NUMBERS, payload: 5 });
-              // dispatch(setForecastDays(5));
-              // setForecastDays(5);
+              dispatch(getDataForecast(5));
             }}
           >
             Get 5-days forecast
@@ -111,18 +108,16 @@ const CurrentWeather = () => {
           <button
             className="selection-container__row-button"
             onClick={() => {
-              dispatch(getDataForecast());
-              dispatch({ type: ForecastActionTypes.ADD_NUMBERS, payload: 7 });
-              // dispatch(setForecastDays(7));
-              // setForecastDays(7);
+              dispatch(getDataForecast(7));
             }}
           >
             Get 7-days forecast
           </button>
         </div>
       </div>
+      {/* {error && <ErrorIndicator />}
+      {isLoaded && <Spinner />} */}
       {showF && <ForecastWeather />}
-      {/* <ForecastWeather /> */}
     </>
   );
 };

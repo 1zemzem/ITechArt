@@ -37,7 +37,7 @@ export interface MainAction {
 export enum DataActionTypes {
   ADD_CITY = "ADD_CITY",
   FETCH_DATA_BEGIN = "FETCH_DATA_BEGIN",
-  FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESs ",
+  FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS ",
   FETCH_DATA_ERROR = "FETCH_DATA_ERROR",
 }
 
@@ -46,8 +46,7 @@ interface AddCity {
   payload?: string;
 }
 interface FetchDataBegin {
-  type: DataActionTypes.FETCH_DATA_BEGIN;
-  // payload?: any;
+  type: DataActionTypes.FETCH_DATA_BEGIN;  
 }
 interface FetchDataSuccess {
   type: DataActionTypes.FETCH_DATA_SUCCESS;
@@ -55,7 +54,7 @@ interface FetchDataSuccess {
 }
 interface FetchDataError {
   type: DataActionTypes.FETCH_DATA_ERROR;
-  payload: true;
+  payload: boolean;
 }
 
 export type FetchData =

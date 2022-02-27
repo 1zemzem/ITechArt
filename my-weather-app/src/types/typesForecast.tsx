@@ -4,7 +4,7 @@ export interface IForecast {
 export interface ForecastState {
   forecast: IForecast;
   isLoaded: boolean;
-  error: boolean | null;
+  error: boolean;
   cityF: any;
   days: number;
   showF: boolean;
@@ -18,7 +18,7 @@ export enum ForecastActionTypes {
   ADD_CITY_F = "ADD_CITY_F",
   ADD_NUMBERS = "ADD_NUMBERS",
   FETCH_FORECAST_BEGIN = "FETCH_FORECAST_BEGIN",
-  FETCH_FORECAST_SUCCESS = "FETCH_FORECAST_SUCCESs ",
+  FETCH_FORECAST_SUCCESS = "FETCH_FORECAST_SUCCESS ",
   FETCH_FORECAST_ERROR = "FETCH_FORECAST_ERROR",
 }
 interface AddCityF {
@@ -38,7 +38,7 @@ interface FetchForecastError {
   payload: true;
 }
 interface AddNumbersOfDays {
-  type: ForecastActionTypes.ADD_CITY_F;
+  type: ForecastActionTypes.ADD_NUMBERS;
   payload: number;
 }
 
