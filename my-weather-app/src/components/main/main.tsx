@@ -34,9 +34,9 @@ const Main: React.FC = () => {
 
   const getData = async () => {
     getDataResult(city);
-    console.log(error);
+    
   };
-  console.log(error);
+  console.log( error, isLoaded, city, show, data);
 
   return (
     <>

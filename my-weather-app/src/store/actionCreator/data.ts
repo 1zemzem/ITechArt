@@ -11,19 +11,21 @@ const getForecastApiUrl = (city: string, apiKey: string) =>
 export const getDataResult = (city: string) => {
   return async (dispatch: Dispatch<FetchData>) => {
     dispatch({ type: DataActionTypes.FETCH_DATA_BEGIN });
-    const data: any = await fetch(getWeatherApiUrl(city, API_KEY))
+    return await fetch(getWeatherApiUrl(city, API_KEY))
       .then((res) => {
         if (!res.ok) {
-          dispatch({ type: DataActionTypes.FETCH_DATA_ERROR, payload: true
-           });
+          return dispatch({
+            type: DataActionTypes.FETCH_DATA_ERROR,
+            payload: true,
+          });
         } else {
           return res.json();
         }
       })
       .then((data) => {
+        dispatch({ type: DataActionTypes.FETCH_DATA_SUCCESS, payload: data });
         return data;
-      });
-    dispatch({ type: DataActionTypes.FETCH_DATA_SUCCESS, payload: data });
+      });   
   };
 };
 
