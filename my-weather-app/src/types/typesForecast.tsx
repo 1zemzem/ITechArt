@@ -35,7 +35,7 @@ interface FetchForecastSuccess {
 }
 interface FetchForecastError {
   type: ForecastActionTypes.FETCH_FORECAST_ERROR;
-  payload: true;
+  payload: boolean;
 }
 interface AddNumbersOfDays {
   type: ForecastActionTypes.ADD_NUMBERS;

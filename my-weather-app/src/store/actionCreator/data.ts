@@ -13,42 +13,56 @@ export const getDataResult = (city: string) => {
     dispatch({ type: DataActionTypes.FETCH_DATA_BEGIN });
     return await fetch(getWeatherApiUrl(city, API_KEY))
       .then((res) => {
-        if (!res.ok) {
-          return dispatch({
+        return res.json();
+      })
+      .then((data) => {
+        console.log({ code: data.cod });
+        if (data.cod === 200) {
+          dispatch({ type: DataActionTypes.FETCH_DATA_SUCCESS, payload: data });
+        } else {
+          dispatch({
             type: DataActionTypes.FETCH_DATA_ERROR,
             payload: true,
           });
-        } else {
-          return res.json();
         }
-      })
-      .then((data) => {
-        dispatch({ type: DataActionTypes.FETCH_DATA_SUCCESS, payload: data });
         return data;
-      });   
+      })
+      .catch((error) => {
+        dispatch({
+          type: DataActionTypes.FETCH_DATA_ERROR,
+          payload: true,
+        });
+      });
   };
 };
 
 export const getForecastResult = (city: string) => {
   return async (dispatch: Dispatch<FetchForecast>) => {
     dispatch({ type: ForecastActionTypes.FETCH_FORECAST_BEGIN });
-    const data: any = await fetch(getForecastApiUrl(city, API_KEY))
+    return await fetch(getForecastApiUrl(city, API_KEY))
       .then((res) => {
-        if (!res.ok) {
+        return res.json();
+      })
+      .then((data) => {
+        console.log({ code: data.cod });
+        if (data.cod === "200") {
+          dispatch({
+            type: ForecastActionTypes.FETCH_FORECAST_SUCCESS,
+            payload: data,
+          });
+        } else {
           dispatch({
             type: ForecastActionTypes.FETCH_FORECAST_ERROR,
             payload: true,
           });
-        } else {
-          return res.json();
         }
-      })
-      .then((data) => {
         return data;
+      })
+      .catch((error) => {
+        dispatch({
+          type: ForecastActionTypes.FETCH_FORECAST_ERROR,
+          payload: true,
+        });
       });
-    dispatch({
-      type: ForecastActionTypes.FETCH_FORECAST_SUCCESS,
-      payload: data,
-    });
   };
 };

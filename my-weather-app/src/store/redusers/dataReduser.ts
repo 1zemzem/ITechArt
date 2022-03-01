@@ -1,9 +1,9 @@
-  import {
-    MainState,
-    MainAction,
-    DataActionTypes,
-    IData,    
-  } from "../../types/types";
+import {
+  MainState,
+  MainAction,
+  DataActionTypes,
+  IData,
+} from "../../types/types";
 
 const initialState: MainState = {
   data: {} as IData,
@@ -20,29 +20,29 @@ export const dataReduser = (
   switch (action.type) {
     case DataActionTypes.ADD_CITY:
       return {
-        ...state,        
+        ...state,
         city: action.payload,
       };
     case DataActionTypes.FETCH_DATA_BEGIN:
       return {
         ...state,
-        isLoaded: true,        
+        isLoaded: true,
       };
-      case DataActionTypes.FETCH_DATA_ERROR:
-        return {
-          ...state,          
-          isLoaded: false,
-          error: action.payload,         
-        };
+    case DataActionTypes.FETCH_DATA_ERROR:
+      return {
+        ...state,
+        isLoaded: false,
+        error: action.payload,
+      };
     case DataActionTypes.FETCH_DATA_SUCCESS:
       return {
         ...state,
         isLoaded: false,
         data: action.payload,
-        show: true,   
-        error: false,     
-      };      
-    
+        show: true,
+        error: false,
+      };
+
     default:
       return state;
   }

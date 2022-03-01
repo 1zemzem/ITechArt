@@ -12,7 +12,7 @@ function getCurrentDate(itemDate: number) {
   `;
 }
 
-const ForecastWeather = () => {
+const ForecastWeather: React.FC = () => {
   const { forecast, days } = useTypeSelector((state) => state.forecast);
   console.log(forecast.list, days);
 
@@ -26,7 +26,6 @@ const ForecastWeather = () => {
       </div>
       <div className="f-container-forecast__item-icon">
         <img
-          // className="f-container-forecast__item-icon"
           src={`http://openweathermap.org/img/w/${item.weather[0].icon}.png`}
           alt="icon"
         />
@@ -45,10 +44,7 @@ const ForecastWeather = () => {
   ));
   return (
     <div className="f-container">
-      <div className="f-container-forecast">
-        {listItems}
-        {/* forecast */}
-      </div>
+      <div className="f-container-forecast">{listItems}</div>
     </div>
   );
 };

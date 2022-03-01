@@ -24,19 +24,10 @@ const Main: React.FC = () => {
     dispatch({ type: ForecastActionTypes.ADD_CITY_F, payload: e.target.value });
   };
 
-  // const getData = async () => {
-  //   try {
-  //     getDataResult(city);
-  //   } catch (error) {
-  //     dispatch({ type: DataActionTypes.FETCH_DATA_ERROR, payload: true})
-  //   }
-  // };
-
   const getData = async () => {
     getDataResult(city);
-    
   };
-  console.log( error, isLoaded, city, show, data);
+  console.log(error, isLoaded, city, show, data);
 
   return (
     <>
@@ -63,71 +54,9 @@ const Main: React.FC = () => {
       </div>
       {error && <ErrorIndicator />}
       {isLoaded && <Spinner />}
-      {show && <CurrentWeather />}
+      {show && !error && <CurrentWeather />}
     </>
   );
 };
-
-// const Main = () => {
-//   const [error, setError] = useState("");
-//   const [isLoaded, setIsLoaded] = useState(false);
-//   const [data, setData] = useState<IData>({} as IData);
-//   const [forecast, setForecast] = useState<IForecast>({} as IForecast);
-//   const [city, setCity] = useState("");
-//   const [show, setShow] = useState(false);
-//   const [showForecast, setShowForecast] = useState(false);
-
-// const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
-//   setCity(e.target.value);
-// };
-
-// const getData = async () => {
-//   await getDataResult(city)
-//     .then((data) => {
-//       console.log(data);
-//       setIsLoaded(false);
-//       setData(data);
-//       setShow(true);
-//       // setShowForecast(false);
-//       setError("");
-//     })
-//     .catch((error) => {
-//       setIsLoaded(true);
-//       setError(error);
-//       setShow(false);
-//     });
-// };
-
-//   const getDataForecast = async () => {
-//     await getForecastResult(city)
-//       .then((data) => {
-//         setIsLoaded(false);
-//         setForecast(data);
-//         setShowForecast(true);
-//         setError("");
-//       })
-//       .catch((error) => {
-//         setIsLoaded(true);
-//         setError(error);
-//         setShowForecast(false);
-//       });
-//   };
-
-//   return (
-//     <>
-
-//       {error && <ErrorIndicator />}
-//       {isLoaded && <Spinner />}
-//       {show && (
-//         <CurrentWeather
-//           data={data}
-//           getDataForecast={getDataForecast}
-//           list={forecast.list}
-//           showForecast={showForecast}
-//         />
-//       )}
-//     </>
-//   );
-// };
 
 export default Main;

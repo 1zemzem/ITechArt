@@ -46,7 +46,7 @@ interface AddCity {
   payload?: string;
 }
 interface FetchDataBegin {
-  type: DataActionTypes.FETCH_DATA_BEGIN;  
+  type: DataActionTypes.FETCH_DATA_BEGIN;
 }
 interface FetchDataSuccess {
   type: DataActionTypes.FETCH_DATA_SUCCESS;

@@ -5,11 +5,15 @@ import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useActions } from "../../hooks/useActions";
 import { useDispatch } from "react-redux";
 import { ForecastActionTypes } from "../../types/typesForecast";
+import ErrorIndicator from "../error-indicator";
+import Spinner from "../spinner";
 
 const CurrentWeather = () => {
   const { data } = useTypeSelector((state) => state.data);
 
-  const { cityF, showF, forecast, error, isLoaded } = useTypeSelector((state) => state.forecast);
+  const { cityF, showF, error, isLoaded } = useTypeSelector(
+    (state) => state.forecast
+  );
 
   const { getForecastResult } = useActions();
   const dispatch = useDispatch();
@@ -113,8 +117,8 @@ const CurrentWeather = () => {
           </button>
         </div>
       </div>
-      {/* {error && <ErrorIndicator />}
-      {isLoaded && <Spinner />} */}
+      {error && <ErrorIndicator />}
+      {isLoaded && <Spinner />}
       {showF && <ForecastWeather />}
     </>
   );

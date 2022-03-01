@@ -21,33 +21,33 @@ export const forecastReduser = (
   switch (action.type) {
     case ForecastActionTypes.ADD_CITY_F:
       return {
-        ...state,        
+        ...state,
         cityF: action.payload,
       };
     case ForecastActionTypes.FETCH_FORECAST_BEGIN:
       return {
         ...state,
-        isLoaded: true,       
+        isLoaded: true,
       };
-      case ForecastActionTypes.FETCH_FORECAST_ERROR:
-        return {
-          ...state,
-          isLoaded: false,
-          error: true,          
-        };
+    case ForecastActionTypes.FETCH_FORECAST_ERROR:
+      return {
+        ...state,
+        isLoaded: false,
+        error: action.payload,
+      };
     case ForecastActionTypes.FETCH_FORECAST_SUCCESS:
       return {
         ...state,
         isLoaded: false,
         error: false,
         forecast: action.payload,
-        showF: true,        
+        showF: true,
       };
     case ForecastActionTypes.ADD_NUMBERS:
       return {
-        ...state,        
+        ...state,
         days: action.payload,
-      };    
+      };
     default:
       return state;
   }
