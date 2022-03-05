@@ -1,57 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import CurrentWeather from "../current-weather";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner/spinner";
-import { getDataResult, getForecastResult } from "../../services/api-sevice";
-import { IData, IForecast } from "../types";
 import "./main.scss";
+import { useTypeSelector } from "../../hooks/useTypeSelector";
+import { useActions } from "../../hooks/useActions";
+import { useDispatch } from "react-redux";
+import { DataActionTypes } from "../../types/types";
+import { ForecastActionTypes } from "../../types/typesForecast";
 
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
-const Main = () => {
-  const [error, setError] = useState("");
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [data, setData] = useState<IData>({} as IData);
-  const [forecast, setForecast] = useState<IForecast>({} as IForecast);
-  const [city, setCity] = useState("");
-  const [show, setShow] = useState(false);
-  const [showForecast, setShowForecast] = useState(false);
+const Main: React.FC = () => {
+  const { error, isLoaded, city, show, data } = useTypeSelector(
+    (state) => state.data
+  );
+
+  const { getDataResult } = useActions();
+  const dispatch = useDispatch();
 
   const updateValue = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(e.target.value);
+    dispatch({ type: DataActionTypes.ADD_CITY, payload: e.target.value });
+    dispatch({ type: ForecastActionTypes.ADD_CITY_F, payload: e.target.value });
   };
 
   const getData = async () => {
-    await getDataResult(city)
-      .then((data) => {
-        console.log(data);
-        setIsLoaded(false);
-        setData(data);
-        setShow(true);
-        // setShowForecast(false);
-        setError("");
-      })
-      .catch((error) => {
-        setIsLoaded(true);
-        setError(error);
-        setShow(false);
-      });
+    getDataResult(city);
   };
-
-  const getDataForecast = async () => {
-    await getForecastResult(city)
-      .then((data) => {
-        setIsLoaded(false);
-        setForecast(data);
-        setShowForecast(true);
-        setError("");
-      })
-      .catch((error) => {
-        setIsLoaded(true);
-        setError(error);
-        setShowForecast(false);
-      });
-  };
+  console.log(error, isLoaded, city, show, data);
 
   return (
     <>
@@ -66,11 +42,10 @@ const Main = () => {
               onChange={updateValue}
               type="text"
               name="text"
-              value={city}
             />
             <button
               className="card__search-container-item-button"
-              onClick={getData}
+              onClick={() => dispatch(getData())}
             >
               Search
             </button>
@@ -79,14 +54,7 @@ const Main = () => {
       </div>
       {error && <ErrorIndicator />}
       {isLoaded && <Spinner />}
-      {show && (
-        <CurrentWeather
-          data={data}
-          getDataForecast={getDataForecast}
-          list={forecast.list}
-          showForecast={showForecast}
-        />
-      )}
+      {show && !error && <CurrentWeather />}
     </>
   );
 };

@@ -1,25 +1,28 @@
-import React, { useState, FC } from "react";
+import React from "react";
 import "./current-weather.scss";
 import ForecastWeather from "../forecast-weather/forecast-weather";
-import { IData } from "../types";
+import { useTypeSelector } from "../../hooks/useTypeSelector";
+import { useActions } from "../../hooks/useActions";
+import { useDispatch } from "react-redux";
+import { ForecastActionTypes } from "../../types/typesForecast";
+import ErrorIndicator from "../error-indicator";
+import Spinner from "../spinner";
 
-interface CurrentWeatherProps {
-  data: IData;
-  getDataForecast: () => {};
-  list: [];
-  showForecast: boolean;
-}
+const CurrentWeather = () => {
+  const { data } = useTypeSelector((state) => state.data);
 
-const CurrentWeather: FC<CurrentWeatherProps> = ({
-  data,
-  getDataForecast,
-  list,
-  showForecast,
-  ...props
-}) => {
-  const [forecastDays, setForecastDays] = useState(Number);
+  const { cityF, showF, error, isLoaded } = useTypeSelector(
+    (state) => state.forecast
+  );
 
-  console.log(list);
+  const { getForecastResult } = useActions();
+  const dispatch = useDispatch();
+
+  const getDataForecast = (Ndays: number) => {
+    dispatch({ type: ForecastActionTypes.ADD_NUMBERS, payload: Ndays });
+    getForecastResult(cityF);
+  };
+
   return (
     <>
       <div className="container">
@@ -28,6 +31,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
             <div className="weather-card__title">{data.name}</div>
             <div className="weather-card__description">
               {data.weather[0].description}
+              description
             </div>
             <img
               className="weather-card__icon"
@@ -90,8 +94,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
           <button
             className="selection-container__row-button"
             onClick={() => {
-              getDataForecast();
-              setForecastDays(3);
+              dispatch(getDataForecast(3));
             }}
           >
             Get 3-days forecast
@@ -99,8 +102,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
           <button
             className="selection-container__row-button"
             onClick={() => {
-              getDataForecast();
-              setForecastDays(5);
+              dispatch(getDataForecast(5));
             }}
           >
             Get 5-days forecast
@@ -108,17 +110,16 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
           <button
             className="selection-container__row-button"
             onClick={() => {
-              getDataForecast();
-              setForecastDays(7);
+              dispatch(getDataForecast(7));
             }}
           >
             Get 7-days forecast
           </button>
         </div>
       </div>
-      {showForecast && (
-        <ForecastWeather list={list} forecastDays={forecastDays} />
-      )}
+      {error && <ErrorIndicator />}
+      {isLoaded && <Spinner />}
+      {showF && <ForecastWeather />}
     </>
   );
 };
