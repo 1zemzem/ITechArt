@@ -18,36 +18,24 @@ const ButtonRow = () => {
 
   const forecastDays = [3, 5, 7];
 
+  const button = forecastDays.map((item) => {
+    console.log(item);
+    return (
+      <button
+        key={item}
+        className="selection-container__row-button"
+        onClick={() => {
+          dispatch(getDataForecast(item));
+        }}
+      >
+        Get {item}-days forecast
+      </button>
+    );
+  });
+
   return (
     <div className="selection-container">
-      <div className="selection-container__row">
-        <button
-          className="selection-container__row-button"
-          onClick={() => {
-            dispatch(getDataForecast(forecastDays[0]));
-          }}
-        >
-          Get {forecastDays[0]}-days forecast
-        </button>
-
-        <button
-          className="selection-container__row-button"
-          onClick={() => {
-            dispatch(getDataForecast(forecastDays[1]));
-          }}
-        >
-          Get {forecastDays[1]}-days forecast
-        </button>
-
-        <button
-          className="selection-container__row-button"
-          onClick={() => {
-            dispatch(getDataForecast(forecastDays[2]));
-          }}
-        >
-          Get {forecastDays[2]}-days forecast
-        </button>
-      </div>
+      <div className="selection-container__row">{button}</div>
     </div>
   );
 };
