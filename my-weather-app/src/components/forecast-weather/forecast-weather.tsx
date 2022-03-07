@@ -43,7 +43,7 @@ const ForecastWeather: React.FC = () => {
     </div>
   ));
   return (
-    <div className="f-container">
+    <div className="f-container" data-testid="notes_list">
       <div className="f-container-forecast">{listItems}</div>
     </div>
   );

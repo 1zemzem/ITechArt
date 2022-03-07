@@ -14,6 +14,7 @@ const Input = () => {
 
   return (
     <input
+    data-testid="add_city"
       className="card__search-container-item-input"
       placeholder="Enter your city name"
       onChange={updateValue}

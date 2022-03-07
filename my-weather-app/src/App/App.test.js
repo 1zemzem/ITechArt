@@ -4,7 +4,7 @@ import App from "./App";
 
 describe("App component", () => {
   it("App renders", () => {
-    render(<App />);
+        render(<App />);        
     
   });
 
