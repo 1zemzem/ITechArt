@@ -19,15 +19,15 @@ const ButtonRow = () => {
   const forecastDays = [3, 5, 7];
 
   const button = forecastDays.map((item) => {
-    console.log(item);
+    
     return (
-      <button
+      <button data-testid="button"
         key={item}
         className="selection-container__row-button"
         onClick={() => {
           dispatch(getDataForecast(item));
         }}
-      >
+      > 
         Get {item}-days forecast
       </button>
     );

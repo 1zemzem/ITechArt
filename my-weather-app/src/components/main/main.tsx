@@ -14,7 +14,7 @@ const Main: React.FC = () => {
 
   return (
     <>
-      <div className="card">
+      <div className="card" data-testid="main">
         <h1 className="card__title">Weather App</h1>
         <h2 className="card__subtitle">Today is {currentData}</h2>
         <div className="card__search-container">
