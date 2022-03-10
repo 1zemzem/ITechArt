@@ -6,7 +6,7 @@ import ButtonRow from "./buttons-row.tsx";
 
 describe("ButtonRow", () => {
   // eslint-disable-next-line no-undef
-  const defaultProps = { cityF:any};
+  const defaultProps = { cityF:"London"};
 const getForecastResult = jest.fn();
 const getDataForecast = jest.fn();
   const { getByTestId } = render(<ButtonRow {...defaultProps} />);
