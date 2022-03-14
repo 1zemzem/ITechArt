@@ -1,19 +1,27 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '../../test-utils';
+// import { render, fireEvent} from "@testing-library/react";
 import Input from "./input";
-import "@testing-library/jest-dom";
 
-describe("Input component", () => {
+// import "@testing-library/jest-dom";
 
-  // eslint-disable-next-line no-undef
-  const defaultProps = { updateValue};
 
-  const { getByTestId } = render(<Input {...defaultProps} />);
-
-  it("Should render Input", async() => {
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(getByTestId("input")).toBeInTheDocument();
-    expect(screen.getByRole("textbox")).toBeInTheDocument();   
+describe("Input", () => {
+    it("should display id", () => {
+      render(<Input />);    
+      expect(screen.getByTestId("input")).toBeInTheDocument()
+    });
   });
-  
-});
+
+// describe("Input component", () => {
+
+// it('should render the component onto the screen', async() => {
+//   const { getByDisplayValue } = render(<Input />)
+//   // eslint-disable-next-line testing-library/prefer-screen-queries
+//   getByDisplayValue('')
+//   // expect(screen.getByTestId('input')).toBeInTheDocument();
+ 
+// });
+
+
+// });

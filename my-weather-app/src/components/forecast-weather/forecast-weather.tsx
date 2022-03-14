@@ -17,7 +17,7 @@ const ForecastWeather: React.FC = () => {
   console.log(forecast.list, days);
 
   const listItems = forecast.list.slice(0, days).map((item: any) => (
-    <div className="f-container-forecast__item" key={item.dt}>
+    <div className="f-container-forecast__item" key={item.dt} data-testid="forecast">
       <div className="f-container-forecast__item-date">
         {getCurrentDate(item.dt)}
       </div>
@@ -43,7 +43,7 @@ const ForecastWeather: React.FC = () => {
     </div>
   ));
   return (
-    <div className="f-container" data-testid="notes_list">
+    <div className="f-container" >
       <div className="f-container-forecast">{listItems}</div>
     </div>
   );
