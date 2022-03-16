@@ -21,7 +21,7 @@ const ButtonRow = () => {
   const button = forecastDays.map((item) => {
     
     return (
-      <button data-testid="button"
+      <button 
         key={item}
         className="selection-container__row-button"
         onClick={() => {
@@ -34,8 +34,8 @@ const ButtonRow = () => {
   });
 
   return (
-    <div className="selection-container">
-      <div className="selection-container__row">{button}</div>
+    <div className="selection-container" >
+      <div className="selection-container__row" data-testid="button-row">{button}</div>
     </div>
   );
 };

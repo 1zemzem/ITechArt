@@ -4,7 +4,7 @@ import './spinner.css';
 
 const Spinner = () => {
   return (
-    <div className="lds-css" data-testID="111">
+    <div className="lds-css" data-testid="spiner">
       <div className="lds-double-ring">
         <div></div>
         <div></div>

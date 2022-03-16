@@ -1,44 +1,38 @@
 import React from "react";
 import CurrentWeather from "./current-weather.tsx";
-import { render, screen } from '../../test-utils';
+import { render, screen } from "../../test-utils";
 
+describe("CurrentWeather", () => {
+      const { getByTestId } = render(<CurrentWeather />, {
+      initialState: {
+        data: {
+          name: "London",
+          clouds: {
+            all: 10,
+          },
+          wind: {
+            speed: 20,
+          },
+          visibility: 30,
+          weather: [{ description: "clear", icon: "clear" }],
+          main: {
+            temp: 10,
+            temp_min: 10,
+            temp_max: 10,
+            humidity: 10,
+            pressure: 10,
+            feels_like: 10,
+          },
+          isLoaded: false,
+          error: false,
+          city: "London",
+          show: true,
+        },
+      },
+    })
+      it("should display id", () => {
+        expect(screen.getByTestId("current-weather")).toBeInTheDocument();
+    });
 
-// describe("CurrentWeather", () => {
-//   it("should display id", () => {
-//     render(<CurrentWeather />);    
-//     expect(screen.getByTestId("current-weather")).toBeInTheDocument()
-//   });
-// });
-
-describe('<CurrentWeather/>', () => {
-  // let getByText;
-  const initialState = {
-    data: {
-      name: "London"
-    }
-    
-  };
   
-    const utils = render(<CurrentWeather />, { initialState });
-    
-    let getByText = utils.getByText;
-  
-
-  it('renders the component', () => {
-    expect(screen.getByText('London')).toBeInTheDocument();
-  });
 });
-
-// describe("CurrentWeather", () => {
-//   // eslint-disable-next-line no-undef
-//   const defaultProps = { showF, error, isLoaded, data };
-
-//   const { getByTestId } = render(<CurrentWeather {...defaultProps} />);
-
-//   it("Should render CurrentWeather", () => {
-//     // eslint-disable-next-line testing-library/prefer-screen-queries
-//     expect(getByTestId("current-weather")).toBeInTheDocument();
-//     expect(screen.getByText(/description/i)).toBeInTheDocument();
-//   });
-// });
-

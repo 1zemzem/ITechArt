@@ -2,9 +2,8 @@ import { render, screen } from "@testing-library/react";
 import ErrorIndicator from "./error-indicator.tsx";
 
 describe("Error component", () => {
+  render(<ErrorIndicator />)
   it("Error renders", () => {
-    render(<ErrorIndicator />);
-    const linkElement = screen.getByText(/sorry/i);
-    expect(linkElement).toBeInTheDocument();
+    expect(screen.getByTestId("error-indicator")).toBeInTheDocument();
   });
 });

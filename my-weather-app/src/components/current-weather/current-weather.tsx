@@ -13,7 +13,7 @@ const CurrentWeather = () => {
 
   return (
     <>
-      <div className="container" id="current-weather">
+      <div className="container" data-testid="current-weather">
         <div className="container__main">
           <div className="weather-card">
             <div className="weather-card__title" >{data.name}</div>
