@@ -1,14 +1,14 @@
 import React from "react";
 import { render, screen } from '../../test-utils';
 // import { render, fireEvent} from "@testing-library/react";
-import Input from "./input";
+import SearchForm from './search-form.tsx'
 
 // import "@testing-library/jest-dom";
 
 
-describe("Input", () => {
+describe("SearchForm", () => {
     it("should display id", () => {
-      render(<Input />);    
+      render(<SearchForm />);    
       expect(screen.getByTestId("input")).toBeInTheDocument()
     });
   });

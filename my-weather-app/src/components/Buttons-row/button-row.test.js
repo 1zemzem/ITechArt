@@ -6,7 +6,18 @@ import { render, screen } from '../../test-utils';
 import ButtonRow from "./buttons-row.tsx";
 
 describe("ButtonRow", () => {
+  const initialState = {
+    cityF: {
+      name: "London"
+    }
+    
+  };
+  
+    const utils = render(<ButtonRow />, { initialState });
+    
+    let getByText = utils.getByText;
     it("should display id", () => {
+
       render(<ButtonRow />);    
       expect(screen.getByTestId("button")).toBeInTheDocument()
     });

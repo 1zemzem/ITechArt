@@ -13,7 +13,8 @@ const SearchButton = () => {
     getDataResult(city);
   };
   return (
-    <button data-testid="search-button"
+    <button
+      data-testid="search-button"
       className="card__search-container-item-button"
       onClick={() => dispatch(getData())}
     >

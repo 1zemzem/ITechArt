@@ -3,13 +3,31 @@ import CurrentWeather from "./current-weather.tsx";
 import { render, screen } from '../../test-utils';
 
 
-describe("CurrentWeather", () => {
-  it("should display id", () => {
-    render(<CurrentWeather />);    
-    expect(screen.getByTestId("current-weather")).toBeInTheDocument()
+// describe("CurrentWeather", () => {
+//   it("should display id", () => {
+//     render(<CurrentWeather />);    
+//     expect(screen.getByTestId("current-weather")).toBeInTheDocument()
+//   });
+// });
+
+describe('<CurrentWeather/>', () => {
+  // let getByText;
+  const initialState = {
+    data: {
+      name: "London"
+    }
+    
+  };
+  
+    const utils = render(<CurrentWeather />, { initialState });
+    
+    let getByText = utils.getByText;
+  
+
+  it('renders the component', () => {
+    expect(screen.getByText('London')).toBeInTheDocument();
   });
 });
-
 
 // describe("CurrentWeather", () => {
 //   // eslint-disable-next-line no-undef
