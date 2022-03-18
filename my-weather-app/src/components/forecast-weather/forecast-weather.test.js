@@ -3,19 +3,34 @@ import { render, screen } from "../../test-utils";
 import ForecastWeather from "./forecast-weather.tsx";
 
 describe("ForecastWeather", () => {
-  const { getAllByTestId } = render(<ForecastWeather />, {
-    initialState: {
-      forecast: {
-        list: [],
-      },
-      isLoaded: false,
-      error: false,
-      cityF: "London",
-      days: 3,
-      showF: true,
-    },
-  });
+  
   it("should display id", () => {
-    expect(screen.getAllByTestId("forecast")).toBeInTheDocument();
+    const forecast = {
+      list: [
+        {dt: 1647597600, 
+          weather: [{
+            main: "description",
+            icon: "01"
+          }],
+          temp: {
+            day: 10,
+            night: 3,
+          }
+        }
+      ]
+    }
+    
+    render(<ForecastWeather />, {
+      initialState: {
+        forecast,
+        isLoaded: false,
+        error: false,
+        cityF: "London",
+        days: 3,
+        showF: true,
+      },
+    });
+    const linkElement = screen.getAllByTestId("forecast");
+    expect(linkElement[0]).toHaveTextContent(forecast[0].dt);
   });
 });

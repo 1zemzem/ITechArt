@@ -20,7 +20,7 @@ const Main: React.FC = () => {
       </div>
       {error && <ErrorIndicator />}
       {isLoaded && <Spinner />}
-      {show && !error && <CurrentWeather />}
+      {show && !error && <CurrentWeather data-testid="111"/>}
     </>
   );
 };

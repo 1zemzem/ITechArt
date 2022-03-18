@@ -3,8 +3,8 @@ import { render, screen } from "../../test-utils";
 import SearchButton from "./search-button.tsx";
 
 describe("SearchButton", () => {
-  render(<SearchButton />);
   it("should display id", () => {
+    render(<SearchButton />);
     expect(screen.getByTestId("search-button")).toBeInTheDocument();
   });
 });
