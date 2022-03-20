@@ -16,24 +16,24 @@ const CurrentWeather = () => {
       <div className="container" data-testid="current-weather">
         <div className="container__main">
           <div className="weather-card">
-            <div className="weather-card__title" >{data.name}</div>
+            <div className="weather-card__title">{data.name}</div>
             <div className="weather-card__description">
-              {/* {data.weather[0].description} */}
+              {data.weather[0].description}
               description
             </div>
-            {/* <img
+            <img
               className="weather-card__icon"
               src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
               alt="icon"
-            /> */}
+            />
             <div className="weather-card__temp">
               <div className="weather-card__temp-value">
-                {/* <div className="weather-card__title">{data.main.temp}</div> */}
+                <div className="weather-card__title">{data.main.temp}</div>
               </div>
-              {/* <div>
+              <div>
                 min.temp {data.main.temp_min} °C / {data.main.temp_max} °C
                 max.temp
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
@@ -41,31 +41,31 @@ const CurrentWeather = () => {
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Wind</div>
             <div className="container-data__info-row-value">
-              {/* {data.wind.speed} m/s */}
+              {data.wind.speed} m/s
             </div>
           </div>
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Humidity</div>
             <div className="container-data__info-row-value">
-              {/* {data.main.humidity} % */}
+              {data.main.humidity} %
             </div>
           </div>
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Pressure</div>
             <div className="container-data__info-row-value">
-              {/* {data.main.pressure} mb */}
+              {data.main.pressure} mb
             </div>
           </div>
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Clouds</div>
             <div className="container-data__info-row-value">
-              {/* {data.clouds.all} % */}
+              {data.clouds.all} %
             </div>
           </div>
           <div className="container-data__info-row">
             <div className="container-data__info-row-label">Feels like</div>
             <div className="container-data__info-row-value">
-              {/* {data.main.feels_like} °C */}
+              {data.main.feels_like} °C
             </div>
           </div>
           <div className="container-data__info-row">

@@ -3,34 +3,75 @@ import { render, screen } from "../../test-utils";
 import ForecastWeather from "./forecast-weather.tsx";
 
 describe("ForecastWeather", () => {
-  
   it("should display id", () => {
-    const forecast = {
-      list: [
-        {dt: 1647597600, 
-          weather: [{
-            main: "description",
-            icon: "01"
-          }],
-          temp: {
-            day: 10,
-            night: 3,
-          }
-        }
-      ]
-    }
-    
-    render(<ForecastWeather />, {
-      initialState: {
-        forecast,
+    const initialState = {
+      forecast: {
+        forecast: {
+          list: [
+            {
+              dt: 1647597600,
+              weather: [
+                {
+                  main: "description",
+                  icon: "01",
+                },
+              ],
+              temp: {
+                day: 10,
+                night: 3,
+              },
+            },
+            {
+              dt: 1647597600,
+              weather: [
+                {
+                  main: "description",
+                  icon: "01",
+                },
+              ],
+              temp: {
+                day: 10,
+                night: 3,
+              },
+            },
+            {
+              dt: 1647597600,
+              weather: [
+                {
+                  main: "description",
+                  icon: "01",
+                },
+              ],
+              temp: {
+                day: 10,
+                night: 3,
+              },
+            },
+            {
+              dt: 1647597600,
+              weather: [
+                {
+                  main: "description",
+                  icon: "01",
+                },
+              ],
+              temp: {
+                day: 10,
+                night: 3,
+              },
+            },
+          ],
+        },
         isLoaded: false,
         error: false,
         cityF: "London",
         days: 3,
         showF: true,
       },
-    });
+    };
+
+    render(<ForecastWeather />, { initialState });
     const linkElement = screen.getAllByTestId("forecast");
-    expect(linkElement[0]).toHaveTextContent(forecast[0].dt);
+    expect(linkElement.length).toEqual(3);
   });
 });
