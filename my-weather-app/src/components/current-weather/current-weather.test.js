@@ -5,7 +5,7 @@ import { render, screen } from "../../test-utils";
 describe("CurrentWeather", () => {
   it("should display id", () => {
     const initialState = {
-      data: {
+      weatherData: {
         data: {
           name: "London",
           clouds: {

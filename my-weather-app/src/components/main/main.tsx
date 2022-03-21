@@ -9,7 +9,7 @@ import SearchForm from "../search-form/search-form";
 const currentData = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
 const Main: React.FC = () => {
-  const { error, isLoaded, show } = useTypeSelector((state) => state.data);
+  const { error, isLoaded, show } = useTypeSelector((state) => state.weatherData);
 
   return (
     <>

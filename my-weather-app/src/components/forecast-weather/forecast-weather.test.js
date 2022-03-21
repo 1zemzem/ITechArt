@@ -5,7 +5,7 @@ import ForecastWeather from "./forecast-weather.tsx";
 describe("ForecastWeather", () => {
   it("should display id", () => {
     const initialState = {
-      forecast: {
+      forecastData: {
         forecast: {
           list: [
             {

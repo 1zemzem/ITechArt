@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { ForecastActionTypes } from "../../types/typesForecast";
 
 const ButtonRow = () => {
-  const { cityF } = useTypeSelector((state) => state.forecast);
+  const { cityF } = useTypeSelector((state) => state.forecastData);
 
   const { getForecastResult } = useActions();
   const dispatch = useDispatch();

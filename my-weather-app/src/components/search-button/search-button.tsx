@@ -5,7 +5,7 @@ import { useActions } from "../../hooks/useActions";
 import { useDispatch } from "react-redux";
 
 const SearchButton = () => {
-  const { city } = useTypeSelector((state) => state.data);
+  const { city } = useTypeSelector((state) => state.weatherData);
   const { getDataResult } = useActions();
   const dispatch = useDispatch();
 

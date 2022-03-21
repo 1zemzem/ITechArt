@@ -13,7 +13,7 @@ function getCurrentDate(itemDate: number) {
 }
 
 const ForecastWeather: React.FC = () => {
-  const { forecast, days } = useTypeSelector((state) => state.forecast);
+  const { forecast, days } = useTypeSelector((state) => state.forecastData);
   console.log(forecast.list, days);
 
   const listItems = forecast.list.slice(0, days).map((item: any) => (

@@ -7,9 +7,9 @@ import Spinner from "../spinner";
 import ButtonRow from "../Buttons-row/buttons-row";
 
 const CurrentWeather = () => {
-  const { data } = useTypeSelector((state) => state.data);
+  const { data } = useTypeSelector((state) => state.weatherData);
 
-  const { showF, error, isLoaded } = useTypeSelector((state) => state.forecast);
+  const { showF, error, isLoaded } = useTypeSelector((state) => state.forecastData);
 
   return (
     <>
