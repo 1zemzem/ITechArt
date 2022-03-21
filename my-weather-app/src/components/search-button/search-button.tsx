@@ -12,6 +12,7 @@ const SearchButton = () => {
   const getData = async () => {
     getDataResult(city);
   };
+  
   return (
     <button
       data-testid="search-button"

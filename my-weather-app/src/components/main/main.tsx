@@ -19,7 +19,7 @@ const Main: React.FC = () => {
         <SearchForm />
       </div>
       {error && <ErrorIndicator />}
-      {isLoaded && <Spinner />}
+      {isLoaded && <Spinner data-testid="spinner"/>}
       {show && !error && <CurrentWeather />}
     </>
   );

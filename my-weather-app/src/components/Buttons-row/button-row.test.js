@@ -1,23 +1,62 @@
 import React from "react";
 import { render, screen } from "../../test-utils";
-// import { fireEvent } from "@testing-library/react";
 import ButtonRow from "./buttons-row.tsx";
 
 describe("ButtonRow", () => {
- render(<ButtonRow />);
-  
+  const initialState = {
+    forecastData: {
+      forecast: {
+        list: [
+          {
+            dt: 1647597600,
+            weather: [
+              {
+                main: "description",
+                icon: "01",
+              },
+            ],
+            temp: {
+              day: 10,
+              night: 3,
+            },
+          },
+          {
+            dt: 1647597600,
+            weather: [
+              {
+                main: "description",
+                icon: "01",
+              },
+            ],
+            temp: {
+              day: 10,
+              night: 3,
+            },
+          },
+          {
+            dt: 1647597600,
+            weather: [
+              {
+                main: "description",
+                icon: "01",
+              },
+            ],
+            temp: {
+              day: 10,
+              night: 3,
+            },
+          },
+        ],
+      },
+      isLoaded: false,
+      error: false,
+      cityF: "London",
+      days: 3,
+      showF: true,
+    },
+  };
   it("should display id", () => {
-    // render(<ButtonRow />);
+    render(<ButtonRow />, { initialState });
     expect(screen.getByTestId("button-row")).toBeInTheDocument();
   });
-
-  // it("handles onClick", () => {
-  //   const onClick = jest.fn();
-  //   render(<ButtonRow />);
-  //   const buttonElement = screen.getAllByText(/days forecast/i);
-  //   fireEvent.click(buttonElement);
-  //   expect(onClick).toBeCalledTimes(1)
-    
-  // });
-
 });
