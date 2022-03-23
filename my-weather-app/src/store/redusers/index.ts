@@ -3,8 +3,8 @@ import { dataReduser } from "./dataReduser";
 import { forecastReduser } from "./forecastReduser";
 
 export const rootReduser = combineReducers({
-    data: dataReduser,  
-    forecast: forecastReduser  
+    weatherData: dataReduser,  
+    forecastData: forecastReduser  
 })
 
 export type RootState = ReturnType<typeof rootReduser>

@@ -23,41 +23,21 @@
         margin-bottom: 28px;
     }
 
-    .card__search-container {
-        display: flex;
-        flex-direction: column;
-        padding: 24px;
-        width: 100%;
-        max-width: 500px;
-        background-color: #ffffff;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-    }
+    // .card__search-container {
+    //     display: flex;
+    //     flex-direction: column;
+    //     padding: 24px;
+    //     width: 100%;
+    //     max-width: 500px;
+    //     background-color: #ffffff;
+    //     border-radius: 12px;
+    //     display: flex;
+    //     align-items: center;
+    // }
 
-    .card__search-container-items {
-        display: flex;
-        align-items: center;
-    }
+    // .card__search-container-items {
+    //     display: flex;
+    //     align-items: center;
+    // }
 
-    .card__search-container-item-input {
-        padding: 10px 24px;
-        margin-right: 36px;
-        border: 1px solid rgba(34, 36, 38, .15);
-        border-radius: 6px;
-        outline: none;
-        font: inherit;
-    }
-
-    .card__search-container-item-button {
-        cursor: pointer;
-        border: 0;
-        font: inherit;
-        font-weight: 600;
-        outline: none;
-        padding: 11px 24px;
-        border-radius: 6px;
-        background: #e0e1e2;
-        transition: opacity .2s ease-out;
-    }
 }

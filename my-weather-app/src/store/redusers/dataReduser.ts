@@ -5,7 +5,7 @@ import {
   IData,
 } from "../../types/types";
 
-const initialState: MainState = {
+export const initialState: MainState = {
   data: {} as IData,
   isLoaded: false,
   error: false,
@@ -32,7 +32,7 @@ export const dataReduser = (
       return {
         ...state,
         isLoaded: false,
-        error: action.payload,
+        error: true,
       };
     case DataActionTypes.FETCH_DATA_SUCCESS:
       return {

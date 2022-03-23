@@ -13,11 +13,11 @@ function getCurrentDate(itemDate: number) {
 }
 
 const ForecastWeather: React.FC = () => {
-  const { forecast, days } = useTypeSelector((state) => state.forecast);
+  const { forecast, days } = useTypeSelector((state) => state.forecastData);
   console.log(forecast.list, days);
 
   const listItems = forecast.list.slice(0, days).map((item: any) => (
-    <div className="f-container-forecast__item" key={item.dt}>
+    <div className="f-container-forecast__item" key={item.dt} data-testid="forecast">
       <div className="f-container-forecast__item-date">
         {getCurrentDate(item.dt)}
       </div>

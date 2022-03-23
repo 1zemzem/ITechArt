@@ -5,7 +5,7 @@ import {
   IForecast,
 } from "../../types/typesForecast";
 
-const initialState: ForecastState = {
+export const initialState: ForecastState = {
   forecast: {} as IForecast,
   isLoaded: false,
   error: false,
@@ -33,7 +33,7 @@ export const forecastReduser = (
       return {
         ...state,
         isLoaded: false,
-        error: action.payload,
+        error: true,
       };
     case ForecastActionTypes.FETCH_FORECAST_SUCCESS:
       return {

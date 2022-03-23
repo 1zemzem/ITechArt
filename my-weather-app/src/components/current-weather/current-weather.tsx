@@ -2,30 +2,18 @@ import React from "react";
 import "./current-weather.scss";
 import ForecastWeather from "../forecast-weather/forecast-weather";
 import { useTypeSelector } from "../../hooks/useTypeSelector";
-import { useActions } from "../../hooks/useActions";
-import { useDispatch } from "react-redux";
-import { ForecastActionTypes } from "../../types/typesForecast";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
+import ButtonRow from "../Buttons-row/buttons-row";
 
 const CurrentWeather = () => {
-  const { data } = useTypeSelector((state) => state.data);
+  const { data } = useTypeSelector((state) => state.weatherData);
 
-  const { cityF, showF, error, isLoaded } = useTypeSelector(
-    (state) => state.forecast
-  );
-
-  const { getForecastResult } = useActions();
-  const dispatch = useDispatch();
-
-  const getDataForecast = (Ndays: number) => {
-    dispatch({ type: ForecastActionTypes.ADD_NUMBERS, payload: Ndays });
-    getForecastResult(cityF);
-  };
+  const { showF, error, isLoaded } = useTypeSelector((state) => state.forecastData);
 
   return (
     <>
-      <div className="container">
+      <div className="container" data-testid="current-weather">
         <div className="container__main">
           <div className="weather-card">
             <div className="weather-card__title">{data.name}</div>
@@ -88,35 +76,7 @@ const CurrentWeather = () => {
           </div>
         </div>
       </div>
-
-      <div className="selection-container">
-        <div className="selection-container__row">
-          <button
-            className="selection-container__row-button"
-            onClick={() => {
-              dispatch(getDataForecast(3));
-            }}
-          >
-            Get 3-days forecast
-          </button>
-          <button
-            className="selection-container__row-button"
-            onClick={() => {
-              dispatch(getDataForecast(5));
-            }}
-          >
-            Get 5-days forecast
-          </button>
-          <button
-            className="selection-container__row-button"
-            onClick={() => {
-              dispatch(getDataForecast(7));
-            }}
-          >
-            Get 7-days forecast
-          </button>
-        </div>
-      </div>
+      <ButtonRow />
       {error && <ErrorIndicator />}
       {isLoaded && <Spinner />}
       {showF && <ForecastWeather />}

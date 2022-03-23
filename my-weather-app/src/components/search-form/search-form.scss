@@ -1,0 +1,25 @@
+.card__search-container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.card__search-container-items {
+    display: flex;
+    align-items: center;
+}
+
+.card__search-container-item-input {
+    padding: 10px 24px;
+    margin-right: 36px;
+    border: 1px solid rgba(34, 36, 38, .15);
+    border-radius: 6px;
+    outline: none;
+    font: inherit;
+}
