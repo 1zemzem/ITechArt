@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ITechArt/static/css/main.7c7db675.css",
+    "main.js": "/ITechArt/static/js/main.a2c60035.js",
+    "index.html": "/ITechArt/index.html",
+    "main.7c7db675.css.map": "/ITechArt/static/css/main.7c7db675.css.map",
+    "main.a2c60035.js.map": "/ITechArt/static/js/main.a2c60035.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7c7db675.css",
+    "static/js/main.a2c60035.js"
+  ]
+}
